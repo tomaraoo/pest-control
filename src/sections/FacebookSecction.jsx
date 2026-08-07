@@ -60,12 +60,12 @@ export default function FacebookSection() {
     }, []);
 
     return (
-        <section className="bg-green-50/40 px-6 py-20 lg:px-10">
+        <section className="bg-yellow-50/40 px-6 py-20 lg:px-10">
             <div className="mx-auto max-w-7xl">
 
                 {/* Header */}
                 <div className="mx-auto max-w-3xl text-center">
-                    <span className="text-sm font-semibold uppercase tracking-widest text-green-600">
+                    <span className="text-sm font-semibold uppercase tracking-widest text-yellow-600">
                         Social Proof
                     </span>
 
@@ -104,7 +104,7 @@ export default function FacebookSection() {
                             <div key={comment.id} className="flex items-start gap-3">
 
                                 {/* Avatar */}
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-100 font-semibold text-green-700">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-yellow-100 font-semibold text-yellow-700">
                                     {comment.name.charAt(0)}
                                 </div>
 

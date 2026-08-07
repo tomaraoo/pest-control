@@ -7,8 +7,62 @@
   --secondary-font: "Elms Sans", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
 body {
   font-family: var(--primary-font);
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+section {
+  scroll-margin-top: -3rem;
+}
+
+section.section-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+  will-change: opacity, transform;
+}
+
+section.section-reveal.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-top-button {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background: #f59e0b;
+  color: #ffffff;
+  border: none;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+}
+
+.scroll-top-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-top-button:hover {
+  background: #d97706;
 }
 
 .secondary-font {

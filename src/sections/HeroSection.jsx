@@ -2,20 +2,30 @@ import p1 from '../assets/p-1.jpg'
 import { ShieldCheckIcon, Star } from 'lucide-react'
 
 export default function HeroSection() {
+    const scrollToSection = (sectionId) => {
+        const target = document.getElementById(sectionId)
+
+        if (!target) {
+            return
+        }
+
+        target.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+
     return (
-        <section className="relative min-h-screen overflow-hidden">
+        <section id="hero" className="relative min-h-screen overflow-hidden">
             <img
                 src={p1}
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover"
             />
 
-            <div className="absolute inset-0 bg-[#10251bc9]" />
+            <div className="absolute inset-0 bg-[#1E1701c9]" />
 
             <div className="relative z-10 flex min-h-screen items-center px-6 py-12 lg:px-16">
                 <div className="max-w-2xl space-y-6">
 
-                    <div className="flex items-center gap-2 text-sm font-semibold text-[#22C25D]">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-[#f59e0b]">
                         <ShieldCheckIcon className="size-5" />
                         <span>CERTIFIED LOCAL PEST SPECIALIST</span>
                     </div>
@@ -33,11 +43,19 @@ export default function HeroSection() {
                     </div>
 
                     <div className="flex flex-wrap gap-3">
-                        <button className="cursor-pointer rounded-md bg-[#22C25D] px-6 py-3 font-semibold text-[#144B29] transition-colors duration-300 hover:bg-[#1eaa51]">
+                        <button
+                            type="button"
+                            onClick={() => scrollToSection("booking")}
+                            className="inline-flex items-center justify-center rounded-md bg-[#f59e0b] px-6 py-3 font-semibold text-[#78350f] transition-colors duration-300 hover:bg-[#d97706]"
+                        >
                             Book Now
                         </button>
 
-                        <button className="cursor-pointer rounded-md bg-[#f4f4f4] px-6 py-3 font-semibold text-[#144B29] transition-colors duration-300 hover:bg-[#CBCCCD]">
+                        <button
+                            type="button"
+                            onClick={() => scrollToSection("services")}
+                            className="inline-flex items-center justify-center rounded-md bg-[#f4f4f4] px-6 py-3 font-semibold text-[#78350f] transition-colors duration-300 hover:bg-[#CBCCCD]"
+                        >
                             Our Services
                         </button>
                     </div>

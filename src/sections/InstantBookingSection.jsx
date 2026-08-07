@@ -250,12 +250,12 @@ export default function InstantBookingSection() {
         : null;
 
     return (
-        <section className="bg-green-50/40 px-6 py-20 lg:px-10">
+        <section id="booking" className="bg-yellow-50/40 px-6 py-20 lg:px-10">
             <div className="mx-auto max-w-7xl">
 
                 {/* Header */}
                 <div className="mx-auto max-w-3xl text-center">
-                    <span className="text-sm font-semibold uppercase tracking-widest text-green-600">
+                    <span className="text-sm font-semibold uppercase tracking-widest text-yellow-600">
                         Book a Service
                     </span>
 
@@ -290,7 +290,7 @@ export default function InstantBookingSection() {
                                 <button
                                     type="button"
                                     onClick={previousMonth}
-                                    className="flex size-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-green-400 hover:bg-green-50 hover:text-green-700"
+                                    className="flex size-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-700"
                                 >
                                     <ChevronLeft className="size-4" />
                                 </button>
@@ -298,7 +298,7 @@ export default function InstantBookingSection() {
                                 <button
                                     type="button"
                                     onClick={nextMonth}
-                                    className="flex size-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-green-400 hover:bg-green-50 hover:text-green-700"
+                                    className="flex size-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-700"
                                 >
                                     <ChevronRight className="size-4" />
                                 </button>
@@ -331,7 +331,7 @@ export default function InstantBookingSection() {
                         {/* Loading */}
                         {loading ? (
                             <div className="flex min-h-[260px] items-center justify-center">
-                                <LoaderCircle className="size-6 animate-spin text-green-600" />
+                                <LoaderCircle className="size-6 animate-spin text-yellow-600" />
                             </div>
                         ) : (
                             <div className="mt-4 grid grid-cols-7 gap-2">
@@ -359,9 +359,9 @@ export default function InstantBookingSection() {
                         rounded-lg border text-sm transition
 
                         ${selected
-                                                    ? "border-green-500 bg-green-500 font-semibold text-white"
+                                                    ? "border-yellow-500 bg-yellow-500 font-semibold text-white"
                                                     : available
-                                                        ? "border-slate-200 bg-white text-slate-700 hover:border-green-400 hover:bg-green-50"
+                                                        ? "border-slate-200 bg-white text-slate-700 hover:border-yellow-400 hover:bg-yellow-50"
                                                         : "cursor-not-allowed border-slate-100 bg-slate-50 text-slate-300"
                                                 }
                       `}
@@ -376,8 +376,7 @@ export default function InstantBookingSection() {
                         {/* Legend */}
                         <div className="mt-8 flex gap-5 text-xs text-slate-500 secondary-font">
                             <div className="flex items-center gap-2">
-                                <span className="size-2 rounded-full bg-green-500" />
-                                Available
+                                    <span className="size-2 rounded-full bg-yellow-500" />
                             </div>
 
                             <div className="flex items-center gap-2">
@@ -390,7 +389,7 @@ export default function InstantBookingSection() {
                     {/* Time Slots */}
                     <div className="border-t border-slate-200 bg-slate-50/70 p-6 sm:p-8 lg:border-l lg:border-t-0">
                         <div className="flex items-start gap-3">
-                            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700">
+                            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-yellow-100 text-yellow-700">
                                 <CalendarCheck className="size-5" />
                             </div>
 
@@ -422,8 +421,8 @@ export default function InstantBookingSection() {
                         text-sm font-medium transition
 
                         ${selected
-                                                    ? "border-green-500 bg-green-100 text-green-800 ring-1 ring-green-500"
-                                                    : "border-slate-200 bg-white text-slate-700 hover:border-green-400 hover:bg-green-50"
+                                                    ? "border-yellow-500 bg-yellow-100 text-yellow-800 ring-1 ring-yellow-500"
+                                                    : "border-slate-200 bg-white text-slate-700 hover:border-yellow-400 hover:bg-yellow-50"
                                                 }
                       `}
                                         >
@@ -444,7 +443,7 @@ export default function InstantBookingSection() {
                             type="button"
                             disabled={!selectedDate || !selectedTime}
                             onClick={handleBooking}
-                            className="mt-6 w-full rounded-lg bg-green-500 px-5 py-3.5 font-semibold text-white transition hover:bg-green-600 disabled:cursor-not-allowed disabled:bg-slate-300"
+                            className="mt-6 w-full rounded-lg bg-yellow-500 px-5 py-3.5 font-semibold text-white transition hover:bg-yellow-600 disabled:cursor-not-allowed disabled:bg-slate-300"
                         >
                             Continue to Booking Form
                         </button>

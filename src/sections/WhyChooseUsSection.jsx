@@ -37,7 +37,7 @@ const reasons = [
 
 export default function WhyChooseUsSection() {
     return (
-        <section className="px-6 py-20 lg:px-10">
+        <section id="why-us" className="px-6 py-20 lg:px-10">
             <div className="mx-auto max-w-7xl">
                 <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
 
@@ -71,7 +71,7 @@ export default function WhyChooseUsSection() {
 
                     {/* Content */}
                     <div>
-                        <span className="text-sm font-semibold uppercase tracking-widest text-green-600">
+                        <span className="text-sm font-semibold uppercase tracking-widest text-yellow-600">
                             Why Choose Us
                         </span>
 
@@ -93,9 +93,9 @@ export default function WhyChooseUsSection() {
                                 return (
                                     <article
                                         key={reason.title}
-                                        className="group flex gap-4 rounded-lg border border-slate-200 bg-white p-5 transition-colors duration-300 hover:bg-green-50">
+                                        className="group flex gap-4 rounded-lg border border-slate-200 bg-white p-5 transition-colors duration-300 hover:bg-yellow-50">
 
-                                        <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700">
+                                        <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-yellow-100 text-yellow-700">
                                             <Icon className="size-5" />
                                         </div>
 

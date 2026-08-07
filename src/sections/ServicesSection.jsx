@@ -38,12 +38,12 @@ const services = [
 
 export default function ServicesSection() {
     return (
-        <section className="px-6 py-20 lg:px-10">
+        <section id="services" className="px-6 py-20 lg:px-10">
             <div className="mx-auto max-w-7xl">
 
                 {/* Header */}
                 <div className="max-w-2xl">
-                    <span className="text-sm font-semibold uppercase tracking-widest text-green-600">
+                    <span className="text-sm font-semibold uppercase tracking-widest text-yellow-600">
                         Services
                     </span>
 
@@ -66,7 +66,7 @@ export default function ServicesSection() {
                         return (
                             <article
                                 key={service.title}
-                                className={`group relative bg-white p-6 transition-colors duration-300 hover:bg-green-50 sm:p-8 ${isLast ? "sm:col-span-2 lg:col-span-3 lg:min-h-48" : "min-h-64"} `}>
+                                className={`group relative bg-white p-6 transition-colors duration-300 hover:bg-yellow-50 sm:p-8 ${isLast ? "sm:col-span-2 lg:col-span-3 lg:min-h-48" : "min-h-64"} `}>
                                 <span className="font-mono text-xs text-slate-400">
                                     {String(index + 1).padStart(2, "0")}
                                 </span>

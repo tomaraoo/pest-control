@@ -57,6 +57,7 @@ function getVisibleCount() {
 }
 
 export default function TestimonialsSection() {
+    const sectionId = "testimonials"
     const [testimonials, setTestimonials] = useState(DEFAULT_TESTIMONIALS);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(getVisibleCount);
@@ -140,10 +141,10 @@ export default function TestimonialsSection() {
     }
 
     return (
-        <section className="px-6 py-20 lg:px-10">
+        <section id="testimonials" className="px-6 py-20 lg:px-10">
             <div className="mx-auto max-w-7xl">
                 <div className="mx-auto max-w-3xl text-center">
-                    <span className="text-sm font-semibold uppercase tracking-widest text-green-600">
+                    <span className="text-sm font-semibold uppercase tracking-widest text-yellow-600">
                         Customer Reviews
                     </span>
 
@@ -201,7 +202,7 @@ export default function TestimonialsSection() {
                                     width: `${100 / visibleCount}%`,
                                 }}
                             >
-                                <article className="h-full rounded-xl border border-slate-200 bg-white p-6 transition-colors duration-300 hover:bg-green-50">
+                                <article className="h-full rounded-xl border border-slate-200 bg-white p-6 transition-colors duration-300 hover:bg-yellow-50">
                                     <div className="flex gap-1">
                                         {Array.from({ length: 5 }).map((_, index) => (
                                             <Star
@@ -241,7 +242,7 @@ export default function TestimonialsSection() {
                                 type="button"
                                 onClick={() => setCurrentIndex(index)}
                                 className={`h-2 rounded-full transition-all ${currentIndex === index
-                                        ? "w-6 bg-green-500"
+                                        ? "w-6 bg-yellow-500"
                                         : "w-2 bg-slate-200 hover:bg-slate-300"
                                     }`}
                             />
