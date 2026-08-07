@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Text:wght@200..700&display=swap');
+@import "tailwindcss";
+
+
+:root {
+  --primary-font: "Stack Sans Text", sans-serif;
+  --secondary-font: "Elms Sans", sans-serif;
+}
+
+
+body {
+  font-family: var(--primary-font);
+}
+
+.secondary-font {
+  font-family: var(--secondary-font);
+}
