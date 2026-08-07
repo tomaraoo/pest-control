@@ -17,16 +17,16 @@ export default function HeroSection() {
 
                     <div className="flex items-center gap-2 text-sm font-semibold text-[#22C25D]">
                         <ShieldCheckIcon className="size-5" />
-                        <span>CERTIFIED LOCAL TERMITE SPECIALIST</span>
+                        <span>CERTIFIED LOCAL PEST SPECIALIST</span>
                     </div>
 
                     <div className="space-y-4 text-[#f4f4f4]">
                         <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-                            Protect Your Home & Family From Termites
+                            Protect Your Home & Family From Pests
                         </h1>
 
                         <p className="secondary-font max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
-                            Professional, eco-friendly termite control services tailored to your
+                            Professional, eco-friendly pest control services tailored to your
                             neighborhood. Fast response, guaranteed results, and friendly
                             local service you can count on.
                         </p>

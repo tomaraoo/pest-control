@@ -18,14 +18,12 @@ export default function FooterSection() {
                         <div className="flex items-center gap-2 text-green-400">
                             <ShieldCheckIcon className="size-6" />
                             <span className="text-lg font-bold">
-                                Milipestcon - Anay Pest Control
+                                Milpestcon - Anay Pest Control
                             </span>
                         </div>
 
                         <p className="secondary-font max-w-md text-sm leading-6 text-gray-300">
-                            Your trusted local specialists in professional termite inspection,
-                            treatment, and prevention. Protecting homes and properties from
-                            termite damage since 2020.
+                            Your trusted local specialists in professional pest inspection, treatment, and prevention. Protecting homes and properties from pests since 2020.
                         </p>
                     </div>
 
@@ -57,7 +55,7 @@ export default function FooterSection() {
                         <div className="space-y-3 text-sm text-gray-300">
                             <div className="flex items-start gap-3">
                                 <Clock3 className="mt-0.5 size-4 shrink-0 text-green-400" />
-                                <span>Everyday: 7:00 AM – 7:00 PM</span>
+                                <span>Monday to Saturday: 7:00 AM – 7:00 PM</span>
                             </div>
 
                             <div className="flex items-start gap-3">
@@ -72,7 +70,7 @@ export default function FooterSection() {
                 <div className="mt-10 border-t border-white/10 pt-6">
                     <div className="flex items-center justify-center gap-1.5 text-xs text-gray-400">
                         <Copyright className="size-3.5" />
-                        <span>2020 Milipestcon - Anay Pest Control. All rights reserved.</span>
+                        <span>2020 Milpestcon - Anay Pest Control. All rights reserved.</span>
                     </div>
                 </div>
             </div>
