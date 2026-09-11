@@ -3,6 +3,8 @@
 
 
 :root {
+  --bg: #fff;
+
   --primary-font: "Stack Sans Text", sans-serif;
   --secondary-font: "Elms Sans", sans-serif;
 }
@@ -16,11 +18,11 @@ html {
 body {
   font-family: var(--primary-font);
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--bg);
 }
 
 section {
-  scroll-margin-top: -3rem;
+  scroll-margin-top: 3rem;
 }
 
 section.section-reveal {
@@ -35,36 +37,17 @@ section.section-reveal.section-visible {
   transform: translateY(0);
 }
 
-.scroll-top-button {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  z-index: 50;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 9999px;
-  background: #f59e0b;
-  color: #ffffff;
-  border: none;
-  opacity: 0;
-  transform: translateY(16px);
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+.testimonial-strip {
+  animation: testimonial-strip-move 18s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-.scroll-top-button.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
+@keyframes testimonial-strip-move {
+  from {
+    transform: translateX(0);
+  }
 
-.scroll-top-button:hover {
-  background: #d97706;
-}
-
-.secondary-font {
-  font-family: var(--secondary-font);
+  to {
+    transform: translateX(calc(var(--slide-distance) * -1));
+  }
 }

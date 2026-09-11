@@ -1,81 +1,47 @@
-import { useEffect, useState } from "react"
-import FacebookSection from "./sections/FacebookSecction"
-import FooterSection from "./sections/FooterSection"
-import HeroSection from "./sections/HeroSection"
-import InstantBookingSection from "./sections/InstantBookingSection"
-import ServicesSection from "./sections/ServicesSection"
-import TestimonialsSection from "./sections/TestimonialsSection"
-import WhyChooseUsSection from "./sections/WhyChooseUsSection"
-import { ArrowUp01Icon } from "lucide-react"
-import { ArrowUp } from "lucide-react"
+import React from 'react'
+import AppHeader from './components/AppHeader'
+import Hero from './sections/Hero'
+import Why from './sections/Why'
+import Services from './sections/Services'
+import BackToTop from './components/BackToTop'
+import Booking from './sections/Booking'
+import Testimonials from './sections/Testimonials'
+import Footer from './sections/Footer'
 
 function App() {
-  const [showTopButton, setShowTopButton] = useState(false)
-
-  useEffect(() => {
-    const sections = document.querySelectorAll("section")
-
-    if (!sections.length) {
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("section-visible")
-          }
-        })
-      },
-      {
-        threshold: 0.15,
-      }
-    )
-
-    sections.forEach((section) => {
-      section.classList.add("section-reveal")
-      observer.observe(section)
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowTopButton(window.scrollY > 360)
-    }
-
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
   return (
     <>
       <div>
-        <HeroSection />
-        <ServicesSection />
-        <WhyChooseUsSection />
-        <InstantBookingSection />
-        <TestimonialsSection />
-        <FacebookSection />
-        {/* footer */}
-        <FooterSection />
-      </div>
+        {/* Navigation */}
+        <AppHeader />
 
-      <button
-        type="button"
-        onClick={scrollToTop}
-        className={`scroll-top-button ${showTopButton ? "visible" : ""}`}
-        aria-label="Return to top"
-      >
-        <ArrowUp />
-      </button>
+        <main className='lg:px-15 px-5'>
+          <div className="lg:mt-0 mt-15">
+            <Hero />
+          </div>
+
+          <div className="lg:mt-0 mt-15">
+            <Why />
+          </div>
+
+          <div className="lg:mt-0 mt-15">
+            <Services />
+          </div>
+
+          <div className="lg:mt-0 mt-15">
+            <Booking />
+          </div>
+
+
+          <div className="lg:mt-0 mt-15">
+            <Testimonials />
+          </div>
+
+        </main>
+
+        <Footer />
+        <BackToTop />
+      </div>
     </>
   )
 }
