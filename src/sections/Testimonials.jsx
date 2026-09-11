@@ -1,52 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Star } from 'lucide-react'
-
-const API_URL = import.meta.env.VITE_API_URL
-
-const DEFAULT_TESTIMONIALS = [
-    {
-        id: 1,
-        name: "Robert Harrison",
-        location: "Homeowner",
-        rating: 5,
-        comment: "Great service. The team was professional and very helpful.",
-    },
-    {
-        id: 2,
-        name: "Clara Thompson",
-        location: "Homeowner",
-        rating: 5,
-        comment: "Fast and reliable service. Very satisfied with the treatment.",
-    },
-    {
-        id: 3,
-        name: "Marcus Johnson",
-        location: "Homeowner",
-        rating: 5,
-        comment: "Friendly staff and excellent service. Highly recommended.",
-    },
-    {
-        id: 4,
-        name: "Angela Reyes",
-        location: "Homeowner",
-        rating: 5,
-        comment: "Very accommodating and easy to communicate with.",
-    },
-    {
-        id: 5,
-        name: "Michael Santos",
-        location: "Homeowner",
-        rating: 4,
-        comment: "Good service and the treatment was done properly.",
-    },
-    {
-        id: 6,
-        name: "Jenny Cruz",
-        location: "Homeowner",
-        rating: 5,
-        comment: "Very satisfied. The team was polite and professional.",
-    },
-]
+import { collection, onSnapshot, query, where } from 'firebase/firestore'
+import { db } from '../firebase'
 
 function getVisibleCount() {
     if (typeof window === 'undefined') return 3
@@ -56,34 +11,60 @@ function getVisibleCount() {
     return 3
 }
 
+function TestimonialCard({ testimonial }) {
+    return (
+        <article className="h-full rounded-xl border border-slate-200 bg-white p-6 transition-colors duration-300 hover:bg-yellow-50">
+            <div className="flex gap-1">
+                {Array.from({ length: 5 }).map((_, index) => (
+                    <Star key={index} className={`size-4 ${index < testimonial.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-200'}`} />
+                ))}
+            </div>
+
+            <p className="secondary-font mt-5 min-h-18 text-sm leading-6 text-slate-600">
+                “{testimonial.comment}”
+            </p>
+
+            <div className="mt-6 border-t border-slate-100 pt-4">
+                <p className="font-semibold text-slate-900">
+                    {testimonial.name}
+                </p>
+
+                <p className="secondary-font mt-1 text-xs text-slate-500">
+                    {testimonial.clientType}
+                </p>
+            </div>
+        </article>
+    )
+}
+
 function Testimonials() {
-    const [testimonials, setTestimonials] = useState(DEFAULT_TESTIMONIALS)
+    const [testimonials, setTestimonials] = useState([])
     const [visibleCount, setVisibleCount] = useState(getVisibleCount)
     const [isPaused, setIsPaused] = useState(false)
 
     useEffect(() => {
-        async function fetchTestimonials() {
-            if (!API_URL) return
+        const testimonialsQuery = query(
+            collection(db, 'testimonials'),
+            where('published', '==', true)
+        )
 
-            try {
-                const response = await fetch(`${API_URL}/testimonials`)
+        const unsubscribe = onSnapshot(
+            testimonialsQuery,
+            (snapshot) => {
+                const data = snapshot.docs.map((document) => ({
+                    id: document.id,
+                    ...document.data(),
+                }))
 
-                if (!response.ok) {
-                    throw new Error('Failed to load testimonials')
-                }
-
-                const data = await response.json()
-
-                if (data.testimonials?.length) {
-                    setTestimonials(data.testimonials)
-                }
-            } catch (error) {
-                console.error(error)
-                setTestimonials(DEFAULT_TESTIMONIALS)
+                setTestimonials(data)
+            },
+            (error) => {
+                console.error('Firestore testimonials error:', error)
+                setTestimonials([])
             }
-        }
+        )
 
-        fetchTestimonials()
+        return unsubscribe
     }, [])
 
     useEffect(() => {
@@ -99,13 +80,16 @@ function Testimonials() {
     const averageRating = useMemo(() => {
         if (!testimonials.length) return 0
 
-        const total = testimonials.reduce((sum, testimonial) => sum + testimonial.rating, 0)
+        const total = testimonials.reduce((sum, testimonial) => sum + Number(testimonial.rating || 0), 0)
 
         return total / testimonials.length
     }, [testimonials])
 
+    const hasAnimation = testimonials.length > 3
     const maxIndex = Math.max(testimonials.length - visibleCount, 0)
     const slideDistance = maxIndex * (100 / visibleCount)
+
+    if (!testimonials.length) return null
 
     return (
         <section id="testimonials" className="overflow-hidden px-6 py-20 lg:px-10">
@@ -135,45 +119,32 @@ function Testimonials() {
                         </span>
 
                         <span className="secondary-font text-sm text-slate-500">
-                            ({testimonials.length} reviews)
+                            ({testimonials.length} {testimonials.length === 1 ? 'review' : 'reviews'})
                         </span>
                     </div>
                 </div>
 
-                <div className="relative mt-12 overflow-hidden" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onTouchStart={() => setIsPaused(true)} onTouchEnd={() => setIsPaused(false)}>
+                {hasAnimation ? (
+                    <div className="relative mt-12 overflow-hidden" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onTouchStart={() => setIsPaused(true)} onTouchEnd={() => setIsPaused(false)}>
+                        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--bg)] to-transparent" />
 
-                    <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--bg)] to-transparent" />
+                        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--bg)] to-transparent" />
 
-                    <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--bg)] to-transparent" />
-
-                    <div className="testimonial-strip flex" style={{ '--slide-distance': `${slideDistance}%`, animationPlayState: isPaused ? 'paused' : 'running' }}>
+                        <div className="testimonial-strip flex" style={{ '--slide-distance': `${slideDistance}%`, animationPlayState: isPaused ? 'paused' : 'running' }}>
+                            {testimonials.map((testimonial) => (
+                                <div key={testimonial.id} className="shrink-0 px-2" style={{ width: `${100 / visibleCount}%` }}>
+                                    <TestimonialCard testimonial={testimonial} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div className={`mx-auto mt-12 grid gap-4 ${testimonials.length === 1 ? 'max-w-lg grid-cols-1' : testimonials.length === 2 ? 'max-w-4xl grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}`}>
                         {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="shrink-0 px-2" style={{ width: `${100 / visibleCount}%` }}>
-                                <article className="h-full rounded-xl border border-slate-200 bg-white p-6 transition-colors duration-300 hover:bg-yellow-50">
-                                    <div className="flex gap-1">
-                                        {Array.from({ length: 5 }).map((_, index) => (
-                                            <Star key={index} className={`size-4 ${index < testimonial.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-200'}`} />
-                                        ))}
-                                    </div>
-
-                                    <p className="secondary-font mt-5 min-h-18 text-sm leading-6 text-slate-600">
-                                        “{testimonial.comment}”
-                                    </p>
-
-                                    <div className="mt-6 border-t border-slate-100 pt-4">
-                                        <p className="font-semibold text-slate-900">
-                                            {testimonial.name}
-                                        </p>
-
-                                        <p className="secondary-font mt-1 text-xs text-slate-500">
-                                            {testimonial.location}
-                                        </p>
-                                    </div>
-                                </article>
-                            </div>
+                            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
                         ))}
                     </div>
-                </div>
+                )}
             </div>
         </section>
     )

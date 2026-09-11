@@ -1,68 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { CalendarCheck, ChevronLeft, ChevronRight, LoaderCircle } from 'lucide-react'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { db } from '../firebase'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-function getDefaultAvailability(year, month) {
-    const formatDate = (day) => `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-
-    return {
-        [formatDate(5)]: ['08:00', '09:00', '10:00'],
-        [formatDate(8)]: ['08:00', '09:00', '10:00'],
-        [formatDate(12)]: ['08:00', '09:00', '10:00'],
-        [formatDate(16)]: ['08:00', '09:00', '10:00'],
-        [formatDate(20)]: ['08:00', '09:00', '10:00'],
-        [formatDate(24)]: ['08:00', '09:00', '10:00'],
-    }
-}
-
-function loadAvailability(year, month) {
-    return new Promise((resolve, reject) => {
-        if (!API_URL) {
-            reject(new Error('VITE_API_URL is missing.'))
-            return
-        }
-
-        const callback = `calendarCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`
-        const script = document.createElement('script')
-        const url = `${API_URL}?action=availability&year=${year}&month=${month}&prefix=${callback}`
-
-        let finished = false
-
-        const cleanup = () => {
-            delete window[callback]
-
-            if (script.parentNode) {
-                script.parentNode.removeChild(script)
-            }
-        }
-
-        window[callback] = (data) => {
-            if (finished) return
-
-            finished = true
-            cleanup()
-            resolve(data)
-        }
-
-        script.onerror = () => {
-            if (finished) return
-
-            finished = true
-            cleanup()
-
-            console.error('Apps Script failed to load:', url)
-            reject(new Error(`Unable to load calendar availability from ${API_URL}`))
-        }
-
-        script.src = url
-        script.async = true
-
-        console.log('Loading Calendar API:', url)
-
-        document.body.appendChild(script)
-    })
-}
+const BOOKING_TIMES = [
+    '08:00',
+    '09:00',
+    '10:00',
+]
 
 function formatTime(time) {
     const [hours, minutes] = time.split(':').map(Number)
@@ -79,48 +26,49 @@ function Booking() {
     const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate())
 
     const [currentDate, setCurrentDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1))
-    const [availability, setAvailability] = useState({})
+    const [bookings, setBookings] = useState({})
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedTime, setSelectedTime] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [usingDemoData, setUsingDemoData] = useState(false)
     const [error, setError] = useState('')
 
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth()
 
     useEffect(() => {
-        async function fetchAvailability() {
-            setLoading(true)
-            setError('')
+        const unsubscribe = onSnapshot(
+            collection(db, 'bookings'),
+            (snapshot) => {
+                const data = {}
+
+                snapshot.docs.forEach((document) => {
+                    data[document.id] = {
+                        id: document.id,
+                        ...document.data(),
+                    }
+                })
+
+                setBookings(data)
+                setLoading(false)
+                setError('')
+            },
+            (error) => {
+                console.error('Firestore booking error:', error)
+                setBookings({})
+                setLoading(false)
+                setError('Unable to load booking availability.')
+            }
+        )
+
+        return unsubscribe
+    }, [])
+
+    useEffect(() => {
+        if (selectedDate && bookings[selectedDate]) {
             setSelectedDate(null)
             setSelectedTime(null)
-
-            if (!API_URL) {
-                setAvailability(getDefaultAvailability(year, month + 1))
-                setUsingDemoData(true)
-                setLoading(false)
-                return
-            }
-
-            try {
-                const data = await loadAvailability(year, month + 1)
-
-                setAvailability(data.availability ?? {})
-                setUsingDemoData(false)
-            } catch (error) {
-                console.error('Calendar API error:', error)
-
-                setAvailability({})
-                setUsingDemoData(false)
-                setError('Unable to load booking availability.')
-            } finally {
-                setLoading(false)
-            }
         }
-
-        fetchAvailability()
-    }, [year, month])
+    }, [bookings, selectedDate])
 
     const monthName = currentDate.toLocaleDateString('en-US', {
         month: 'long',
@@ -146,7 +94,7 @@ function Booking() {
         const dateKey = getDateKey(day)
         const date = new Date(year, month, day)
 
-        if (date < todayStart || !availability[dateKey]?.length) return
+        if (date < todayStart || bookings[dateKey]) return
 
         setSelectedDate(dateKey)
         setSelectedTime(null)
@@ -155,15 +103,25 @@ function Booking() {
     function previousMonth() {
         if (isCurrentMonth) return
 
+        setSelectedDate(null)
+        setSelectedTime(null)
         setCurrentDate(new Date(year, month - 1, 1))
     }
 
     function nextMonth() {
+        setSelectedDate(null)
+        setSelectedTime(null)
         setCurrentDate(new Date(year, month + 1, 1))
     }
 
     function handleBooking() {
         if (!selectedDate || !selectedTime || !API_URL) return
+
+        if (bookings[selectedDate]) {
+            setSelectedDate(null)
+            setSelectedTime(null)
+            return
+        }
 
         const params = new URLSearchParams({
             action: 'reserve',
@@ -171,10 +129,12 @@ function Booking() {
             time: selectedTime,
         })
 
-        window.location.href = `${API_URL}?${params.toString()}`
+        // window.location.href = `${API_URL}?${params.toString()}`
+        const url = `${API_URL}?${params.toString()}`
+        window.open(url, '_blank', 'noopener,noreferrer')
     }
 
-    const selectedSlots = selectedDate ? availability[selectedDate] ?? [] : []
+    const canBook = selectedDate && selectedTime && !bookings[selectedDate]
 
     const formattedSelectedDate = selectedDate
         ? new Date(`${selectedDate}T00:00:00`).toLocaleDateString('en-US', {
@@ -198,7 +158,7 @@ function Booking() {
                     </h2>
 
                     <p className="secondary-font mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 lg:text-base">
-                        Select an available date and time for your pest control service. Complete the booking form and we'll confirm your schedule.
+                        Select an available date and choose the time you will be ready for our team.
                     </p>
                 </div>
 
@@ -216,7 +176,7 @@ function Booking() {
                             </div>
 
                             <div className="flex gap-2">
-                                <button type="button" onClick={previousMonth} disabled={isCurrentMonth} className="flex size-9 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-700  disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-30">
+                                <button type="button" onClick={previousMonth} disabled={isCurrentMonth} className="flex size-9 cursor-pointer items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-yellow-400 hover:bg-yellow-50 hover:text-yellow-700 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-30">
                                     <ChevronLeft className="size-4" />
                                 </button>
 
@@ -226,15 +186,7 @@ function Booking() {
                             </div>
                         </div>
 
-                        {usingDemoData && (
-                            <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
-                                <p className="secondary-font text-xs text-amber-700">
-                                    Sample availability is currently being displayed.
-                                </p>
-                            </div>
-                        )}
-
-                        {error && !usingDemoData && (
+                        {error && (
                             <div className="mt-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
                                 <p className="secondary-font text-xs text-red-700">
                                     {error}
@@ -262,7 +214,8 @@ function Booking() {
                                     const dateKey = getDateKey(day)
                                     const date = new Date(year, month, day)
                                     const isPast = date < todayStart
-                                    const available = !isPast && availability[dateKey]?.length > 0
+                                    const isBooked = Boolean(bookings[dateKey])
+                                    const available = !isPast && !isBooked
                                     const selected = selectedDate === dateKey
 
                                     return (
@@ -288,7 +241,7 @@ function Booking() {
 
                             <div className="flex items-center gap-2">
                                 <span className="size-2 rounded-full bg-slate-200" />
-                                Unavailable
+                                Booked
                             </div>
                         </div>
                     </div>
@@ -305,35 +258,22 @@ function Booking() {
                                 </h3>
 
                                 <p className="secondary-font mt-1 text-xs text-slate-500">
-                                    {selectedDate ? 'Select an available time slot' : 'Available times will appear here'}
+                                    {selectedDate ? 'Select the time you will be ready' : 'Available times will appear here'}
                                 </p>
                             </div>
                         </div>
 
                         <div className="mt-6 space-y-3">
                             {selectedDate ? (
-                                selectedSlots.length > 0 ? (
-                                    selectedSlots.map((time) => {
-                                        const selected = selectedTime === time
+                                BOOKING_TIMES.map((time) => {
+                                    const selected = selectedTime === time
 
-                                        return (
-                                            <button
-                                                key={time}
-                                                type="button"
-                                                onClick={() => setSelectedTime(time)}
-                                                className={`w-full cursor-pointer rounded-lg border px-4 py-3 text-sm font-medium transition ${selected ? 'border-yellow-500 bg-yellow-100 text-yellow-800 ring-1 ring-yellow-500' : 'border-slate-200 bg-white text-slate-700 hover:border-yellow-400 hover:bg-yellow-50'}`}
-                                            >
-                                                {formatTime(time)}
-                                            </button>
-                                        )
-                                    })
-                                ) : (
-                                    <div className="rounded-lg border border-dashed border-slate-200 p-8 text-center">
-                                        <p className="secondary-font text-sm text-slate-400">
-                                            No available time slots for this date.
-                                        </p>
-                                    </div>
-                                )
+                                    return (
+                                        <button key={time} type="button" onClick={() => setSelectedTime(time)} className={`w-full cursor-pointer rounded-lg border px-4 py-3 text-sm font-medium transition ${selected ? 'border-yellow-500 bg-yellow-100 text-yellow-800 ring-1 ring-yellow-500' : 'border-slate-200 bg-white text-slate-700 hover:border-yellow-400 hover:bg-yellow-50'}`}>
+                                            {formatTime(time)}
+                                        </button>
+                                    )
+                                })
                             ) : (
                                 <div className="rounded-lg border border-dashed border-slate-200 p-8 text-center">
                                     <p className="secondary-font text-sm text-slate-400">
@@ -343,12 +283,12 @@ function Booking() {
                             )}
                         </div>
 
-                        <button type="button" disabled={!selectedDate || !selectedTime} onClick={handleBooking} className="mt-6 w-full cursor-pointer rounded-lg bg-yellow-500 px-5 py-3.5 font-semibold text-white transition hover:bg-yellow-600 disabled:cursor-not-allowed disabled:bg-slate-300">
+                        <button type="button" disabled={!canBook} onClick={handleBooking} className="mt-6 w-full cursor-pointer rounded-lg bg-yellow-500 px-5 py-3.5 font-semibold text-white transition hover:bg-yellow-600 disabled:cursor-not-allowed disabled:bg-slate-300">
                             Continue to Booking Form
                         </button>
 
                         <p className="secondary-font mt-3 text-center text-xs text-slate-400">
-                            Booking requests are subject to confirmation.
+                            Only confirmed bookings make a date unavailable.
                         </p>
                     </div>
                 </div>
