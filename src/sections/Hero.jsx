@@ -48,7 +48,7 @@ function Hero() {
                             <button
                                 type="button"
                                 onClick={() => scrollToSection("booking")}
-                                className="inline-flex items-center justify-center rounded-md bg-[#f59e0b] px-6 py-3 font-semibold text-[#78350f] transition-colors duration-300 hover:bg-[#d97706]"
+                                className="inline-flex items-center justify-center rounded-md bg-[#f59e0b] px-6 py-3 font-semibold text-[#f4f4f4] transition-colors duration-300 hover:bg-[#d97706]"
                             >
                                 Book Now
                             </button>
@@ -56,7 +56,7 @@ function Hero() {
                             <button
                                 type="button"
                                 onClick={() => scrollToSection("services")}
-                                className="inline-flex items-center justify-center rounded-md bg-[#f4f4f4] px-6 py-3 font-semibold text-[#78350f] transition-colors duration-300 hover:bg-[#CBCCCD]"
+                                className="inline-flex items-center justify-center rounded-md bg-[#f4f4f4] px-6 py-3 font-semibold text-[#000] transition-colors duration-300 hover:bg-[#CBCCCD]"
                             >
                                 Our Services
                             </button>
