@@ -469,6 +469,51 @@ h2 {
   color: var(--muted);
 }
 
+.credentials-section {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.credentials-inner {
+  display: grid;
+  gap: 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 42px 24px;
+}
+
+.credentials-copy h2 {
+  max-width: 390px;
+  margin-top: 10px;
+  font-size: 24px;
+  letter-spacing: -0.04em;
+}
+
+.credentials-logos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.credential-logo {
+  display: grid;
+  place-items: center;
+  min-height: 96px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fbfcf8;
+}
+
+.credential-logo img {
+  width: auto;
+  max-width: 125px;
+  height: auto;
+  max-height: 64px;
+  object-fit: contain;
+}
+
 .services-section {
   border-top: 1px solid var(--line);
 }
@@ -1031,6 +1076,25 @@ h2 {
 
   .why-content {
     padding: 10px 0;
+  }
+
+  .credentials-inner {
+    grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 55px;
+    padding: 52px 44px;
+  }
+
+  .credentials-copy h2 {
+    font-size: 28px;
+  }
+
+  .credentials-logos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .credential-logo {
+    min-height: 108px;
   }
 
   .services-grid {
