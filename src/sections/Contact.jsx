@@ -1,20 +1,25 @@
 import { ArrowUpRight, Clock3, Mail, MapPin, Phone } from "lucide-react"
+import { useLanguage } from "../lib/i18n"
+import { translations } from "../lib/translations"
 
 const phone = "+63 912 345 6789"
 const email = "sample@gmail.com"
 
 export default function Contact() {
+  const { language } = useLanguage()
+  const copy = translations[language].contact
   return (
     <section id="contact" className="contact-section">
       <div className="section-shell">
         <div className="contact-panel">
           <div className="contact-copy">
-            <span className="eyebrow">Contact Milpestcon</span>
+            <span className="eyebrow">{copy.eyebrow}</span>
             <h2>
-              Need help with
-              <br />a pest problem?
+              {copy.line1}
+              <br />
+              {copy.line2}
             </h2>
-            <p>Call, text, or email us to discuss your property and request a service schedule.</p>
+            <p>{copy.text}</p>
           </div>
 
           <div className="contact-options">
@@ -23,7 +28,7 @@ export default function Contact() {
                 <Phone size={22} />
               </span>
               <span>
-                <small>Call or text</small>
+                <small>{copy.phone}</small>
                 <strong>{phone}</strong>
               </span>
               <ArrowUpRight size={19} />
@@ -34,7 +39,7 @@ export default function Contact() {
                 <Mail size={22} />
               </span>
               <span>
-                <small>Email us</small>
+                <small>{copy.email}</small>
                 <strong>{email}</strong>
               </span>
               <ArrowUpRight size={19} />
@@ -43,11 +48,11 @@ export default function Contact() {
             <div className="contact-meta">
               <span>
                 <MapPin size={18} />
-                Bulacan and nearby areas
+                {copy.area}
               </span>
               <span>
                 <Clock3 size={18} />
-                Monday–Saturday · 7 AM–7 PM
+                {copy.hours}
               </span>
             </div>
           </div>

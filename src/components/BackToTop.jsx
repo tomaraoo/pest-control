@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { ArrowUp } from "lucide-react"
+import { useLanguage } from "../lib/i18n"
+import { translations } from "../lib/translations"
 
 const BackToTop = () => {
+  const { language } = useLanguage()
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -26,7 +29,12 @@ const BackToTop = () => {
   if (!visible) return null
 
   return (
-    <button type="button" onClick={scrollToTop} aria-label="Back to top" className="back-to-top">
+    <button
+      type="button"
+      onClick={scrollToTop}
+      aria-label={translations[language].backToTop}
+      className="back-to-top"
+    >
       <ArrowUp size={18} />
     </button>
   )

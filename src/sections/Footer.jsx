@@ -1,20 +1,25 @@
 import { ArrowUpRight, Clock3, MapPin, ShieldCheck } from "lucide-react"
 import { scrollToSection } from "../lib/constants"
+import { useLanguage } from "../lib/i18n"
+import { translations } from "../lib/translations"
 
 export default function Footer() {
+  const { language } = useLanguage()
+  const copy = translations[language].footer
+
   return (
     <footer className="site-footer">
       <div className="footer-callout">
         <div>
-          <span className="eyebrow">Make room for peace of mind</span>
-          <h2>A healthier space starts here.</h2>
+          <span className="eyebrow">{copy.eyebrow}</span>
+          <h2>{copy.title}</h2>
         </div>
         <button
           type="button"
           className="button button-primary"
           onClick={() => scrollToSection("contact")}
         >
-          Contact our team
+          {copy.contact}
           <ArrowUpRight size={19} />
         </button>
       </div>
@@ -22,44 +27,41 @@ export default function Footer() {
         <div className="footer-brand">
           <ShieldCheck size={28} />
           <strong>MILPESTCON</strong>
-          <p>
-            Local care for the places that matter. Pest inspection, treatment, and prevention for
-            homes and businesses.
-          </p>
+          <p>{copy.brand}</p>
         </div>
-        <nav aria-label="Footer navigation">
-          <h3>Explore</h3>
+        <nav aria-label={copy.explore}>
+          <h3>{copy.explore}</h3>
           <button type="button" onClick={() => scrollToSection("services")}>
-            Our services
+            {copy.services}
           </button>
           <button type="button" onClick={() => scrollToSection("why-us")}>
-            Why Milpestcon
+            {copy.why}
           </button>
           <button type="button" onClick={() => scrollToSection("faq")}>
-            FAQs
+            {copy.faq}
           </button>
           <button type="button" onClick={() => scrollToSection("contact")}>
-            Contact us
+            {copy.contactUs}
           </button>
         </nav>
         <div className="footer-info">
-          <h3>Here for your property</h3>
+          <h3>{copy.property}</h3>
           <p>
             <MapPin size={17} />
-            Bulacan and nearby areas
+            {copy.area}
           </p>
           <p>
             <Clock3 size={17} />
-            Monday–Saturday · 7 AM–7 PM
+            {copy.hours}
           </p>
-          <p>
-            Call, text, or email our team to ask about treatment and schedule a visit.
-          </p>
+          <p>{copy.note}</p>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Milpestcon. All rights reserved.</p>
-        <span>Inspection · Treatment · Prevention</span>
+        <p>
+          © {new Date().getFullYear()} Milpestcon. {copy.rights}
+        </p>
+        <span>{copy.closing}</span>
       </div>
     </footer>
   )

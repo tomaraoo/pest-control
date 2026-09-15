@@ -2,15 +2,18 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowUpRight, Menu, X } from "lucide-react"
 import logo from "../assets/logo.png"
 import { scrollToSection } from "../lib/constants"
-
-const links = [
-  { id: "why-us", label: "Why Milpestcon" },
-  { id: "services", label: "Services" },
-  { id: "process", label: "How it works" },
-  { id: "faq", label: "FAQs" },
-]
+import { useLanguage } from "../lib/i18n"
+import { translations } from "../lib/translations"
 
 export default function AppHeader() {
+  const { language, setLanguage } = useLanguage()
+  const copy = translations[language].nav
+  const links = [
+    { id: "why-us", label: copy.why },
+    { id: "services", label: copy.services },
+    { id: "process", label: copy.process },
+    { id: "faq", label: copy.faq },
+  ]
   const [open, setOpen] = useState(false)
   const root = useRef(null)
   const menuButton = useRef(null)
@@ -51,19 +54,39 @@ export default function AppHeader() {
             <small>ANAY & PEST CONTROL</small>
           </span>
         </a>
-        <nav className="desktop-nav" aria-label="Main navigation">
+        <nav className="desktop-nav" aria-label={copy.main}>
           {links.map((link) => (
             <button key={link.id} type="button" onClick={() => go(link.id)}>
               {link.label}
             </button>
           ))}
         </nav>
+        <div className="language-switch" role="group" aria-label="Language / Wika">
+          <button
+            type="button"
+            className={language === "en" ? "active" : ""}
+            onClick={() => setLanguage("en")}
+            aria-pressed={language === "en"}
+            title="English (United States)"
+          >
+            US
+          </button>
+          <button
+            type="button"
+            className={language === "fil" ? "active" : ""}
+            onClick={() => setLanguage("fil")}
+            aria-pressed={language === "fil"}
+            title="Filipino (Philippines)"
+          >
+            PH
+          </button>
+        </div>
         <button
           type="button"
           className="button button-primary header-cta"
           onClick={() => go("contact")}
         >
-          Contact us
+          {copy.contact}
           <ArrowUpRight size={16} />
         </button>
         <button
@@ -73,13 +96,13 @@ export default function AppHeader() {
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-controls={open ? "mobile-navigation" : undefined}
-          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-label={open ? copy.close : copy.open}
         >
           {open ? <X size={23} /> : <Menu size={23} />}
         </button>
       </div>
       {open && (
-        <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">
+        <nav id="mobile-navigation" className="mobile-nav" aria-label={copy.mobile}>
           {links.map((link) => (
             <button key={link.id} type="button" onClick={() => go(link.id)}>
               {link.label}
@@ -87,7 +110,7 @@ export default function AppHeader() {
             </button>
           ))}
           <button type="button" className="button button-primary" onClick={() => go("contact")}>
-            Contact us
+            {copy.contact}
             <ArrowUpRight size={16} />
           </button>
         </nav>

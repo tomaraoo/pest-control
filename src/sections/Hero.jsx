@@ -1,33 +1,34 @@
 import { ArrowRight, Check, ShieldCheck } from "lucide-react"
 import p1 from "../assets/p-1.jpg"
 import { scrollToSection } from "../lib/constants"
+import { useLanguage } from "../lib/i18n"
+import { translations } from "../lib/translations"
 
 export default function Hero() {
+  const { language } = useLanguage()
+  const copy = translations[language].hero
   return (
     <section id="hero" className="hero-section">
       <div className="hero-content">
         <span className="eyebrow">
           <span className="status-dot" />
-          Local specialists. Lasting peace of mind.
+          {copy.eyebrow}
         </span>
         <h1>
-          Your space.
+          {copy.line1}
           <br />
-          Your peace.
+          {copy.line2}
           <br />
-          <em>Protected.</em>
+          <em>{copy.line3}</em>
         </h1>
-        <p>
-          From termites to everyday household pests, get thoughtful treatment and dependable care
-          for your home or business.
-        </p>
+        <p>{copy.text}</p>
         <div className="hero-actions">
           <button
             type="button"
             className="button button-primary"
             onClick={() => scrollToSection("contact")}
           >
-            Request an assessment
+            {copy.primary}
             <ArrowRight size={19} />
           </button>
           <button
@@ -35,41 +36,31 @@ export default function Hero() {
             className="button button-secondary"
             onClick={() => scrollToSection("services")}
           >
-            Explore our services
+            {copy.secondary}
           </button>
         </div>
         <ul className="hero-trust">
-          <li>
-            <Check size={15} />
-            Homes & businesses
-          </li>
-          <li>
-            <Check size={15} />
-            Bulacan & nearby areas
-          </li>
-          <li>
-            <Check size={15} />
-            Serving since 2020
-          </li>
+          {copy.trust.map((item) => (
+            <li key={item}>
+              <Check size={15} />
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
       <div className="hero-visual">
-        <img
-          src={p1}
-          alt="Residential properties that benefit from regular pest inspection and treatment"
-          fetchPriority="high"
-        />
+        <img src={p1} alt={copy.imageAlt} fetchPriority="high" />
         <div className="hero-image-shade" />
         <div className="hero-image-caption">
           <span className="hero-caption-icon">
             <ShieldCheck size={25} />
           </span>
           <div>
-            <strong>Care that goes beyond treatment.</strong>
-            <span>Inspection. Treatment. Prevention.</span>
+            <strong>{copy.caption}</strong>
+            <span>{copy.captionDetail}</span>
           </div>
         </div>
-        <span className="hero-photo-label">CARE FOR HOMES & BUSINESSES</span>
+        <span className="hero-photo-label">{copy.photoLabel}</span>
       </div>
     </section>
   )
