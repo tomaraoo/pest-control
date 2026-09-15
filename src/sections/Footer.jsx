@@ -1,84 +1,66 @@
-import React from 'react'
-import {
-    Copyright,
-    Mail,
-    MapPin,
-    Phone,
-    ShieldCheckIcon,
-    Clock3,
-} from "lucide-react";
+import { ArrowUpRight, Clock3, MapPin, ShieldCheck } from "lucide-react"
+import { scrollToSection } from "../lib/constants"
 
-function Footer() {
-    return (
-        <>
-            <footer className="bg-[#080808] text-[#f4f4f4]">
-                <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
-                    <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-
-                        {/* Brand */}
-                        <div className="space-y-4">
-                            <div className="flex items-center gap-2 text-yellow-400">
-                                <ShieldCheckIcon className="size-6" />
-                                <span className="text-lg font-bold">
-                                    Milpestcon - Anay Pest Control
-                                </span>
-                            </div>
-
-                            <p className="secondary-font max-w-md text-sm leading-6 text-gray-300">
-                                Your trusted local specialists in professional pest inspection, treatment, and prevention. Protecting homes and properties from pests since 2020.
-                            </p>
-                        </div>
-
-                        {/* Contact */}
-                        <div>
-                            <p className="mb-4 text-sm font-bold tracking-wider text-yellow-400">
-                                CONTACT US
-                            </p>
-
-                            <div className="space-y-3 text-sm text-gray-300">
-                                <div className="flex items-center gap-3">
-                                    <Mail className="size-4 text-yellow-400" />
-                                    <span>sample@gmail.com</span>
-                                </div>
-
-                                <div className="flex items-center gap-3">
-                                    <Phone className="size-4 text-yellow-400" />
-                                    <span>+63 912 345 6789</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Hours */}
-                        <div>
-                            <p className="mb-4 text-sm font-bold tracking-wider text-yellow-400">
-                                HOURS & AREA
-                            </p>
-
-                            <div className="space-y-3 text-sm text-gray-300">
-                                <div className="flex items-start gap-3">
-                                    <Clock3 className="mt-0.5 size-4 shrink-0 text-yellow-400" />
-                                    <span>Monday to Saturday: 7:00 AM – 7:00 PM</span>
-                                </div>
-
-                                <div className="flex items-start gap-3">
-                                    <MapPin className="mt-0.5 size-4 shrink-0 text-yellow-400" />
-                                    <span>Serving Bulacan and nearby areas</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Bottom */}
-                    <div className="mt-10 border-t border-gray-500 pt-6">
-                        <div className="flex items-center justify-center gap-1.5 text-xs text-gray-400">
-                            <Copyright className="size-3.5" />
-                            <span>2020 Milpestcon - Anay Pest Control. All rights reserved.</span>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </>
-    )
+export default function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="footer-callout">
+        <div>
+          <span className="eyebrow">Make room for peace of mind</span>
+          <h2>A healthier space starts here.</h2>
+        </div>
+        <button
+          type="button"
+          className="button button-primary"
+          onClick={() => scrollToSection("contact")}
+        >
+          Contact our team
+          <ArrowUpRight size={19} />
+        </button>
+      </div>
+      <div className="footer-grid">
+        <div className="footer-brand">
+          <ShieldCheck size={28} />
+          <strong>MILPESTCON</strong>
+          <p>
+            Local care for the places that matter. Pest inspection, treatment, and prevention for
+            homes and businesses.
+          </p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <h3>Explore</h3>
+          <button type="button" onClick={() => scrollToSection("services")}>
+            Our services
+          </button>
+          <button type="button" onClick={() => scrollToSection("why-us")}>
+            Why Milpestcon
+          </button>
+          <button type="button" onClick={() => scrollToSection("faq")}>
+            FAQs
+          </button>
+          <button type="button" onClick={() => scrollToSection("contact")}>
+            Contact us
+          </button>
+        </nav>
+        <div className="footer-info">
+          <h3>Here for your property</h3>
+          <p>
+            <MapPin size={17} />
+            Bulacan and nearby areas
+          </p>
+          <p>
+            <Clock3 size={17} />
+            Monday–Saturday · 7 AM–7 PM
+          </p>
+          <p>
+            Call, text, or email our team to ask about treatment and schedule a visit.
+          </p>
+        </div>
+      </div>
+      <div className="footer-bottom">
+        <p>© {new Date().getFullYear()} Milpestcon. All rights reserved.</p>
+        <span>Inspection · Treatment · Prevention</span>
+      </div>
+    </footer>
+  )
 }
-
-export default Footer

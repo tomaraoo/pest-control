@@ -1,127 +1,60 @@
-import React from 'react'
-import {
-    BadgeCheck,
-    Leaf,
-    Clock3,
-    ShieldCheck,
-} from "lucide-react";
-
-import p2 from "../assets/p-2.png";
-import p3 from "../assets/p-3.webp"
+import { BadgeCheck, Clock3, ShieldCheck } from "lucide-react"
+import p2 from "../assets/p-2.png"
 
 const reasons = [
-    {
-        icon: BadgeCheck,
-        title: "Experienced Pest Control Specialists",
-        description:
-            "Reliable treatment backed by hands-on experience in handling termites and other common household pests.",
-    },
-    {
-        icon: Leaf,
-        title: "Safe & Effective Treatment",
-        description:
-            "We use practical pest control methods designed to protect your property while keeping treatment areas properly managed.",
-    },
-    {
-        icon: Clock3,
-        title: "Fast & Responsive Service",
-        description:
-            "We respond quickly to pest concerns and help arrange treatment based on your property's condition and availability.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Focused on Long-Term Protection",
-        description:
-            "Our goal is not only to treat active pests but also to help reduce the risk of recurring infestations.",
-    },
-];
+  {
+    icon: BadgeCheck,
+    title: "A plan for your property",
+    description: "We assess the problem and prepare treatment around your space and pest concerns.",
+  },
+  {
+    icon: Clock3,
+    title: "Clear communication",
+    description: "Know your schedule, what to prepare, and what to expect when our team arrives.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Care beyond the visit",
+    description:
+      "Practical prevention guidance helps you look after your property after treatment.",
+  },
+]
 
-
-function Why() {
-    return (
-        <>
-            <section id="why-us" className="py-20">
-                <div className="mx-auto max-w-7xl">
-                    <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-
-                        {/* Image */}
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
-                            <img
-                                src={p2}
-                                alt="Professional pest control service"
-                                className="h-full min-h-[420px] w-full object-cover"
-                            />
-
-
-                            <div className="flex lg:flex-row flex-col items-center gap-5 bg-slate-50 p-5">
-                                <img
-                                    src={p3}
-                                    alt="Food and Drug Administration Philippines"
-                                    className="h-14 lg:w-auto w-55 object-contain lg:order-1 order-2"
-                                />
-
-                                <div className='lg:order-2 order-1 lg:text-left text-center '>
-                                    <p className="font-semibold text-slate-900">
-                                        Committed to Safe & Compliant Pest Control
-                                    </p>
-                                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                                        We use pest control products and treatment practices that follow
-                                        applicable safety and regulatory standards.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Content */}
-                        <div>
-                            <span className="text-sm font-semibold uppercase tracking-widest text-yellow-600">
-                                Why Milpestcon ?
-                            </span>
-
-                            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl">
-                                Reliable Protection for Your Home & Property
-                            </h2>
-
-                            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 lg:text-base secondary-font">
-                                We provide dependable pest control solutions focused on proper
-                                treatment, responsive service, and long-term protection for homes
-                                and properties.
-                            </p>
-
-                            {/* Reasons */}
-                            <div className="mt-9 space-y-2">
-                                {reasons.map((reason) => {
-                                    const Icon = reason.icon;
-
-                                    return (
-                                        <article
-                                            key={reason.title}
-                                            className="group flex gap-4 rounded-lg border border-slate-200 bg-white p-5 transition-colors duration-300 hover:bg-yellow-50">
-
-                                            <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-yellow-100 text-yellow-700">
-                                                <Icon className="size-5" />
-                                            </div>
-
-                                            <div>
-                                                <h3 className="font-semibold tracking-tight text-slate-900">
-                                                    {reason.title}
-                                                </h3>
-
-                                                <p className="mt-1 text-sm leading-6 text-slate-600 secondary-font">
-                                                    {reason.description}
-                                                </p>
-                                            </div>
-                                        </article>
-                                    );
-                                })}
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </>
-    )
+export default function Why() {
+  return (
+    <section id="why-us" className="section-shell why-section">
+      <div className="why-visual">
+        <img src={p2} alt="Milpestcon team providing pest treatment" loading="lazy" />
+        <div className="why-caption">
+          <strong>Local experience.</strong>
+          <span>Personal attention for every property.</span>
+        </div>
+      </div>
+      <div className="why-content">
+        <span className="eyebrow">The Milpestcon approach</span>
+        <h2>
+          Good care starts
+          <br />
+          with listening.
+        </h2>
+        <p>
+          Pest concerns shouldn't take over your day. We bring practical experience, thoughtful
+          treatment, and a team you can talk to.
+        </p>
+        <div className="why-reasons">
+          {reasons.map((reason) => (
+            <article key={reason.title}>
+              <span>
+                <reason.icon size={23} />
+              </span>
+              <div>
+                <h3>{reason.title}</h3>
+                <p>{reason.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }
-
-export default Why

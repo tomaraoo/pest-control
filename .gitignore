@@ -26,3 +26,9 @@ dist-ssr
 
 *.backup
 .env
+**/.env.*
+!**/.env.example
+
+.pnpm-store/
+.checks/
+**/.secret.local

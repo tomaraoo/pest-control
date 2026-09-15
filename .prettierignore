@@ -1,0 +1,8 @@
+node_modules
+.pnpm-store
+
+dist
+src/sections.backup
+pnpm-lock.yaml
+*.local
+.env*
