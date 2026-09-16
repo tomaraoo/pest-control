@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://pest-control.zcreations.xyz/
