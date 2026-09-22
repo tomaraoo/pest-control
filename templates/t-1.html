@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anay Pest Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap");
+      :root {
+        --bg-color: #eae8e3;
+        --border-color: #d3d0c9;
+        --text-dark: #111111;
+      }
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-dark);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .font-display {
+        font-family: "Oswald", sans-serif;
+      }
+      .font-mono {
+        font-family: "Space Mono", monospace;
+      }
+      /* Hide scrollbar for clean horizontal scroll */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .border-theme {
+        border-color: var(--border-color);
+      }
+      /* Circular Text Animation */
+      @keyframes spin-slow {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .animate-spin-slow {
+        animation: spin-slow 20s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="selection:bg-zinc-900 selection:text-white">
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 z-50 bg-[#EAE8E3] border-b border-theme text-xs lg:text-sm font-medium tracking-widest uppercase flex flex-col md:flex-row w-full backdrop-blur-sm bg-opacity-90"
+    >
+      <!-- Logo & Location -->
+      <div
+        class="flex items-center justify-between md:justify-start md:w-1/3 border-b md:border-b-0 border-theme"
+      >
+        <div class="px-6 py-4 flex-1">
+          <span class="block text-[0.65rem] text-zinc-500 mb-0.5">Milpestcon</span>
+          <span class="text-base font-semibold tracking-tight">Anay Pest Control</span>
+        </div>
+        <div class="hidden lg:block w-px h-16 bg-[#D3D0C9]"></div>
+        <div class="px-6 py-4 flex-1 hidden lg:block text-[0.65rem] text-zinc-500 leading-relaxed">
+          Bulakan<br />Bulacan
+        </div>
+      </div>
+
+      <!-- Main Nav -->
+      <nav
+        class="hidden md:flex flex-1 items-center justify-center space-x-8 lg:space-x-12 px-6 py-4 md:border-l md:border-r border-theme"
+      >
+        <a href="#services" class="hover:text-zinc-500 transition-colors">Services</a>
+        <a href="#about" class="hover:text-zinc-500 transition-colors">About Us</a>
+        <a href="#contact" class="hover:text-zinc-500 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right Utilities -->
+      <div class="flex items-stretch md:w-1/3 justify-between md:justify-end">
+        <a
+          href="#contact"
+          class="bg-[#111111] text-[#EAE8E3] flex-1 md:flex-none flex items-center justify-center space-x-4 px-8 py-4 hover:bg-zinc-800 transition-colors group"
+        >
+          <span>Book Inspection</span>
+          <i
+            data-lucide="arrow-up-right"
+            class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+          ></i>
+        </a>
+      </div>
+    </header>
+
+    <main class="">
+      <!-- SECTION 1: HERO -->
+      <section
+        class="min-h-[600px] flex flex-col border-theme bg-[#212121] w-full h-[85vh] border-b relative"
+      >
+        <!-- Main Content Area -->
+        <div class="relative flex-1 w-full overflow-hidden">
+          <!-- Background Image -->
+          <div class="absolute top-0 right-0 bottom-0 left-0">
+            <img
+              id="hero-image"
+              src="https://images.unsplash.com/photo-1784091473955-f66695d19b58?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="A protected family home in the Philippines"
+              class="filter brightness-[0.85] contrast-[1.1] grayscale-[0.2] bg-center w-full h-full object-cover transition-opacity duration-500"
+            />
+          </div>
+
+          <!-- Gradient Overlay for readability -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-[#212121] via-transparent to-transparent md:w-full"
+          ></div>
+
+          <!-- Massive Typography -->
+          <div class="absolute top-[10%] lg:top-[15%] left-4 md:left-12 lg:left-24 z-10">
+            <h1
+              id="hero-title"
+              class="font-display font-semibold text-2xl md:text-4xl lg:text-6xl text-[#f4f4f4] tracking-tighter uppercase leading-[0.85] mix-blend-multiply flex flex-col"
+            >
+              <span class="">Your Space.</span>
+              <span class="">Your Peace.</span>
+              <span class="">Be Protected.</span>
+            </h1>
+
+            <!-- Sub details under title -->
+            <div class="mt-8 md:mt-12 flex items-start space-x-3">
+              <div class="w-3 h-3 border-t-2 border-l-2 border-[#f4f4f4] mt-1.5"></div>
+              <div
+                id="hero-details"
+                class="font-mono text-xs tracking-widest uppercase text-[#f4f4f4] leading-loose mix-blend-multiply font-semibold"
+              >
+                Thorough Inspection.<br />
+                Targeted Treatment.<br />
+                Lasting Protection.
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Coordinates Overlay -->
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 bg-[#111111] p-8 hidden md:flex flex-col space-y-8 z-20 w-32 border-l border-zinc-800"
+          >
+            <div
+              class="font-mono text-[0.65rem] tracking-widest text-[#EAE8E3] uppercase leading-relaxed opacity-70"
+            >
+              43.412° N<br />5.123° E
+            </div>
+            <div class="w-6 h-px bg-zinc-700"></div>
+            <div
+              class="font-mono text-[0.65rem] tracking-widest text-[#EAE8E3] uppercase leading-relaxed opacity-70"
+            >
+              Alt.<br />320 M
+            </div>
+            <div class="flex flex-col space-y-1 pt-4">
+              <div class="w-8 h-px bg-zinc-600"></div>
+              <div class="w-4 h-px bg-zinc-600"></div>
+            </div>
+          </div>
+
+          <div
+            class="hidden lg:flex absolute bottom-12 right-12 z-20 items-center justify-center w-40 h-40 hidden lg:block group cursor-pointer"
+          >
+            <svg
+              viewBox="0 0 100 100"
+              class="w-full h-full animate-spin-slow mix-blend-multiply opacity-80"
+            >
+              <path
+                id="circlePath"
+                fill="none"
+                d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                class=""
+              ></path>
+              <text class="font-mono text-[9px] tracking-[0.3em] uppercase fill-[#f4f4f4]">
+                <textPath href="#circlePath" startOffset="0%">
+                  Milpestcon · Bulakan Bulacan ·
+                </textPath>
+              </text>
+            </svg>
+            <div
+              class="flex mix-blend-multiply absolute top-0 right-0 bottom-0 left-0 items-center justify-center"
+            >
+              <i data-lucide="arrow-down-left" class="w-8 h-8 text-[#f4f4f4] stroke-[1px]"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Bottom Nav -->
+        <div class="h-20 lg:h-24 w-full flex border-t border-theme z-30 bg-[#EAE8E3]">
+          <div class="flex-1 border-r border-theme hidden md:block"></div>
+          <div
+            class="w-full md:w-2/3 lg:w-1/2 flex items-center justify-between px-8 md:px-16 font-mono text-xs tracking-widest uppercase"
+          >
+            <!-- Nav Items controlled by JS for interaction -->
+            <button
+              class="hero-nav-btn text-[#111111] flex flex-col items-start space-y-2 group"
+              data-target="1"
+              type="button"
+              aria-pressed="true"
+            >
+              <span class="text-lg font-semibold border-b border-[#111111] pb-1 w-full text-left"
+                >01</span
+              >
+              <span class="opacity-100 transition-opacity">The Process</span>
+            </button>
+            <button
+              class="hero-nav-btn text-zinc-400 flex flex-col items-start space-y-2 group hover:text-zinc-600 transition-colors"
+              data-target="2"
+              type="button"
+              aria-pressed="false"
+            >
+              <span
+                class="text-lg border-b border-transparent group-hover:border-zinc-300 pb-1 w-full text-left"
+                >02</span
+              >
+              <span class="transition-opacity">The Mission</span>
+            </button>
+            <button
+              class="hero-nav-btn text-zinc-400 flex flex-col items-start space-y-2 group hover:text-zinc-600 transition-colors"
+              data-target="3"
+              type="button"
+              aria-pressed="false"
+            >
+              <span
+                class="text-lg border-b border-transparent group-hover:border-zinc-300 pb-1 w-full text-left"
+                >03</span
+              >
+              <span class="transition-opacity">The Vision</span>
+            </button>
+          </div>
+          <div class="flex-1 border-l border-theme hidden md:block"></div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: DYNAMIC PEST-CONTROL CONTENT -->
+      <section id="approach" class="py-32 px-6 md:px-12 lg:px-24 border-b border-theme relative">
+        <div class="absolute top-0 left-24 w-px h-full bg-[#D3D0C9] hidden lg:block"></div>
+        <div class="absolute top-0 right-24 w-px h-full bg-[#D3D0C9] hidden lg:block"></div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 relative z-10">
+          <div class="md:col-span-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="font-mono text-xs tracking-widest text-zinc-500 mb-8 uppercase flex items-center space-x-4"
+              >
+                <span id="section-number">01</span>
+                <div class="w-8 h-px bg-zinc-400"></div>
+                <span id="section-label">The Process</span>
+              </div>
+              <h2
+                id="section-title"
+                class="font-display font-semibold text-5xl md:text-7xl tracking-tighter uppercase leading-[0.9] text-[#111111]"
+              >
+                Protection starts<br />with precision.
+              </h2>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-7 flex flex-col space-y-8 pt-4 md:pt-16"
+          >
+            <p
+              id="section-primary"
+              class="text-lg md:text-xl text-zinc-700 leading-relaxed font-light"
+            >
+              Every effective treatment begins with a careful inspection. We identify where pests
+              enter, hide, and breed before recommending a solution built around your property and
+              the people who live or work there.
+            </p>
+            <p id="section-secondary" class="text-base text-zinc-600 leading-relaxed max-w-md">
+              From termites and cockroaches to rodents and mosquitoes, we target the source—not just
+              the symptoms—then help prevent the problem from returning.
+            </p>
+            <div class="pt-8">
+              <a
+                id="section-link"
+                href="#estate"
+                class="inline-flex items-center space-x-3 text-xs font-mono tracking-widest uppercase border-b border-[#111111] pb-2 hover:text-zinc-500 hover:border-zinc-500 transition-all"
+              >
+                <span id="section-link-label">See how we work</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: FIELD WORK GALLERY -->
+      <section id="estate" class="py-32 px-6 md:px-12 lg:px-0 border-b border-theme bg-[#EAE8E3]">
+        <div class="max-w-[100rem] mx-auto">
+          <div
+            class="px-0 lg:px-24 mb-16 flex flex-col md:flex-row md:items-end justify-between space-y-8 md:space-y-0"
+          >
+            <h2
+              class="font-display font-semibold text-4xl md:text-6xl tracking-tighter uppercase text-[#111111]"
+            >
+              Protection<br />in action
+            </h2>
+            <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase text-right">
+              Recent inspections<br />and treatments
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 border-t border-theme pt-3">
+            <!-- Column 1: two images -->
+            <div class="grid grid-rows-2 md:h-[760px]">
+              <figure class="group relative min-h-72 overflow-hidden bg-zinc-200">
+                <img
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
+                  alt="Residential property prepared for pest inspection"
+                  class="h-full w-full object-cover grayscale-[0.25] transition-transform duration-700 group-hover:scale-105"
+                />
+              </figure>
+              <figure class="group relative min-h-72 overflow-hidden bg-zinc-200">
+                <img
+                  src="https://images.pexels.com/photos/8293699/pexels-photo-8293699.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200"
+                  alt="Professional inspecting a residential property"
+                  class="h-full w-full object-cover grayscale-[0.25] transition-transform duration-700 group-hover:scale-105"
+                />
+              </figure>
+            </div>
+
+            <!-- Column 2: three images -->
+            <div class="grid grid-rows-3 md:h-[760px]">
+              <figure class="group relative min-h-56 overflow-hidden bg-zinc-200">
+                <img
+                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
+                  alt="Clean home interior after pest treatment"
+                  class="h-full w-full object-cover grayscale-[0.25] transition-transform duration-700 group-hover:scale-105"
+                />
+              </figure>
+              <figure class="group relative min-h-56 overflow-hidden bg-zinc-200">
+                <img
+                  src="https://images.pexels.com/photos/19789837/pexels-photo-19789837.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200"
+                  alt="Pest-control treatment being performed outdoors"
+                  class="h-full w-full object-cover grayscale-[0.25] transition-transform duration-700 group-hover:scale-105"
+                />
+              </figure>
+              <figure class="group relative min-h-56 overflow-hidden bg-zinc-200">
+                <img
+                  src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
+                  alt="Protected and comfortable family living space"
+                  class="h-full w-full object-cover grayscale-[0.25] transition-transform duration-700 group-hover:scale-105"
+                />
+              </figure>
+            </div>
+
+            <!-- Column 3: one full-height image and Facebook link -->
+            <div class="flex flex-col md:h-[760px]">
+              <figure class="group relative min-h-[520px] flex-1 overflow-hidden bg-zinc-200">
+                <img
+                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
+                  alt="A family home protected by professional pest control"
+                  class="h-full w-full object-cover grayscale-[0.25] transition-transform duration-700 group-hover:scale-105"
+                />
+                <figcaption
+                  class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-6 pb-6 pt-20 font-mono text-xs uppercase tracking-widest text-white"
+                >
+                  Protecting homes since 2020
+                </figcaption>
+              </figure>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between bg-[#111111] px-6 py-5 font-mono text-xs uppercase tracking-widest text-white transition-colors hover:bg-zinc-800"
+              >
+                <span>View more on Facebook</span>
+                <i data-lucide="arrow-up-right" class="h-5 w-5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: WHY CHOOSE US -->
+      <section id="about" class="py-0 border-b border-theme bg-[#EAE8E3] flex flex-col lg:flex-row">
+        <div
+          class="w-full lg:w-1/3 bg-[#111111] text-[#EAE8E3] p-12 md:p-24 flex flex-col justify-center"
+        >
+          <h2 class="font-display font-semibold text-5xl tracking-tighter uppercase mb-12">
+            Why choose<br />Milpestcon
+          </h2>
+          <div class="space-y-8 font-mono text-sm tracking-widest uppercase">
+            <div>
+              <div class="text-zinc-500 mb-2 text-xs">Our standard</div>
+              <div class="flex justify-between border-b border-zinc-800 pb-2">
+                <span>Inspection</span>
+                <span>Thorough</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between border-b border-zinc-800 pb-2">
+                <span>Treatment</span>
+                <span>Targeted</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between border-b border-zinc-800 pb-2">
+                <span>Follow-up</span>
+                <span>Reliable</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-2/3 p-12 md:p-24 grid grid-cols-1 md:grid-cols-2 gap-16 relative">
+          <div class="absolute left-1/2 top-12 bottom-12 w-px bg-theme hidden md:block"></div>
+
+          <div class="space-y-16">
+            <div>
+              <i data-lucide="search" class="w-6 h-6 mb-6 stroke-[1px]"></i>
+              <h3 class="text-lg font-semibold uppercase tracking-widest mb-4">Detailed Inspection</h3>
+              <p class="text-base text-zinc-600 font-light leading-relaxed">
+                We inspect entry points, nesting areas, moisture sources, and visible damage before
+                recommending any treatment.
+              </p>
+            </div>
+            <div>
+              <i data-lucide="crosshair" class="w-6 h-6 mb-6 stroke-[1px]"></i>
+              <h3 class="text-lg font-semibold uppercase tracking-widest mb-4">Targeted Solutions</h3>
+              <p class="text-base text-zinc-600 font-light leading-relaxed">
+                Each treatment plan is matched to the pest, the level of activity, and the needs of
+                your home or business.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-16">
+            <div>
+              <i data-lucide="shield-check" class="w-6 h-6 mb-6 stroke-[1px]"></i>
+              <h3 class="text-lg font-semibold uppercase tracking-widest mb-4">Responsible Care</h3>
+              <p class="text-base text-zinc-600 font-light leading-relaxed">
+                We apply products carefully and explain the preparation and aftercare needed for a
+                safer, smoother service.
+              </p>
+            </div>
+            <div>
+              <i data-lucide="house-check" class="w-6 h-6 mb-6 stroke-[1px]"></i>
+              <h3 class="text-lg font-semibold uppercase tracking-widest mb-4">Lasting Prevention</h3>
+              <p class="text-base text-zinc-600 font-light leading-relaxed">
+                Beyond removing active pests, we help identify practical changes that reduce the
+                chance of another infestation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: SERVICES (Horizontal Scroll) -->
+      <section id="services" class="py-32 border-b border-theme bg-[#EAE8E3] overflow-hidden">
+        <div class="px-6 md:px-12 lg:px-24 mb-16 flex items-end justify-between">
+          <h2
+            class="font-display font-semibold text-5xl md:text-7xl tracking-tighter uppercase text-[#111111]"
+          >
+            Pest-control<br />services
+          </h2>
+          <a
+            href="#contact"
+            class="hidden md:inline-flex items-center space-x-2 text-xs font-mono tracking-widest uppercase hover:text-zinc-500 transition-colors"
+          >
+            <span>Request an inspection</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Scrollable container -->
+        <div
+          class="flex overflow-x-auto no-scrollbar pl-6 md:pl-12 lg:pl-24 pr-24 space-x-8 md:space-x-16 pb-12 cursor-ew-resize"
+        >
+          <!-- Service 1 -->
+          <div class="flex-none w-[280px] md:w-[320px] group">
+            <div
+              class="aspect-[3/4] bg-zinc-200 mb-6 relative overflow-hidden flex items-center justify-center p-8"
+            >
+              <div
+                class="w-32 h-32 rounded-full border border-zinc-400 flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-all duration-500"
+              >
+                <i data-lucide="bug-off" class="w-14 h-14 stroke-[1px]"></i>
+              </div>
+              <div
+                class="absolute top-4 right-4 bg-white/90 px-2 py-1 font-mono text-[10px] tracking-widest uppercase backdrop-blur-sm"
+              >
+                Most requested
+              </div>
+            </div>
+            <h3 class="font-display text-2xl tracking-tight uppercase mb-2">Termite Control</h3>
+            <div class="font-mono text-xs text-zinc-500 tracking-widest uppercase mb-4">
+              Inspection · Treatment · Prevention
+            </div>
+            <a
+              href="#contact"
+              class="block w-full py-3 border border-[#111111] text-center text-xs font-mono tracking-widest uppercase hover:bg-[#111111] hover:text-white transition-colors"
+            >
+              Request Inspection
+            </a>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="flex-none w-[280px] md:w-[320px] group">
+            <div
+              class="aspect-[3/4] bg-zinc-200 mb-6 relative overflow-hidden flex items-center justify-center p-8"
+            >
+              <div
+                class="w-32 h-32 rounded-full border border-zinc-400 flex items-center justify-center group-hover:bg-[#111111] group-hover:text-white transition-all duration-500"
+              >
+                <i data-lucide="shield" class="w-14 h-14 stroke-[1px]"></i>
+              </div>
+            </div>
+            <h3 class="font-display text-2xl tracking-tight uppercase mb-2">General Pest Control</h3>
+            <div class="font-mono text-xs text-zinc-500 tracking-widest uppercase mb-4">
+              Cockroaches · Ants · Common pests
+            </div>
+            <a
+              href="#contact"
+              class="block w-full py-3 border border-[#111111] text-center text-xs font-mono tracking-widest uppercase hover:bg-[#111111] hover:text-white transition-colors"
+            >
+              Get a Quote
+            </a>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="flex-none w-[280px] md:w-[320px] group">
+            <div
+              class="aspect-[3/4] bg-[#111111] mb-6 relative overflow-hidden flex items-center justify-center p-8"
+            >
+              <div
+                class="w-32 h-32 rounded-full border border-zinc-600 text-white flex items-center justify-center group-hover:bg-white group-hover:text-[#111111] transition-all duration-500"
+              >
+                <i data-lucide="rat" class="w-14 h-14 stroke-[1px]"></i>
+              </div>
+              <div
+                class="absolute top-4 left-4 text-white font-mono text-[10px] tracking-widest uppercase"
+              >
+                Homes &amp; Businesses
+              </div>
+            </div>
+            <h3 class="font-display text-2xl tracking-tight uppercase mb-2">Rodent Control</h3>
+            <div class="font-mono text-xs text-zinc-500 tracking-widest uppercase mb-4">
+              Assessment · Removal · Exclusion
+            </div>
+            <a
+              href="#contact"
+              class="block w-full py-3 border border-[#111111] text-center text-xs font-mono tracking-widest uppercase hover:bg-[#111111] hover:text-white transition-colors"
+            >
+              Schedule Service
+            </a>
+          </div>
+
+          <!-- Spacer for scroll -->
+          <div class="flex-none w-12"></div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: CONTACT -->
+      <section id="contact" class="py-32 px-6 md:px-12 lg:px-24 border-b border-theme bg-[#EAE8E3]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          <div class="lg:col-span-5">
+            <div class="font-mono text-xs tracking-widest text-zinc-500 uppercase mb-8">
+              Contact Milpestcon
+            </div>
+            <h2
+              class="font-display font-semibold text-5xl md:text-7xl tracking-tighter uppercase leading-[0.9] text-[#111111] mb-10"
+            >
+              Let’s protect<br />your property.
+            </h2>
+            <p class="text-lg text-zinc-600 font-light leading-relaxed max-w-md mb-12">
+              Tell us what you are seeing and where you are located. We’ll help you choose the right
+              inspection or treatment for your home or business.
+            </p>
+            <div class="space-y-6 font-mono text-xs tracking-widest uppercase">
+              <a href="tel:+639000000000" class="flex items-center gap-4 hover:text-zinc-500">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+                <span>+63 900 000 0000</span>
+              </a>
+              <a href="mailto:hello@milpestcon.example" class="flex items-center gap-4 hover:text-zinc-500">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+                <span>hello@milpestcon.example</span>
+              </a>
+              <div class="flex items-center gap-4">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                <span>Bulakan, Bulacan</span>
+              </div>
+            </div>
+          </div>
+
+          <form class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10" action="#" method="post">
+            <label class="flex flex-col gap-3 font-mono text-xs tracking-widest uppercase">
+              Name
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Your name"
+                class="bg-transparent border-0 border-b border-zinc-400 px-0 py-3 font-sans text-base normal-case tracking-normal outline-none focus:border-black"
+              />
+            </label>
+            <label class="flex flex-col gap-3 font-mono text-xs tracking-widest uppercase">
+              Phone or email
+              <input
+                type="text"
+                name="contact"
+                required
+                placeholder="How can we reach you?"
+                class="bg-transparent border-0 border-b border-zinc-400 px-0 py-3 font-sans text-base normal-case tracking-normal outline-none focus:border-black"
+              />
+            </label>
+            <label class="flex flex-col gap-3 font-mono text-xs tracking-widest uppercase">
+              Service needed
+              <select
+                name="service"
+                class="bg-transparent border-0 border-b border-zinc-400 px-0 py-3 font-sans text-base normal-case tracking-normal outline-none focus:border-black"
+              >
+                <option>Termite control</option>
+                <option>General pest control</option>
+                <option>Rodent control</option>
+                <option>Inspection / Not sure</option>
+              </select>
+            </label>
+            <label class="flex flex-col gap-3 font-mono text-xs tracking-widest uppercase">
+              Location
+              <input
+                type="text"
+                name="location"
+                placeholder="City or barangay"
+                class="bg-transparent border-0 border-b border-zinc-400 px-0 py-3 font-sans text-base normal-case tracking-normal outline-none focus:border-black"
+              />
+            </label>
+            <label class="md:col-span-2 flex flex-col gap-3 font-mono text-xs tracking-widest uppercase">
+              How can we help?
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Describe the pest issue"
+                class="resize-none bg-transparent border-0 border-b border-zinc-400 px-0 py-3 font-sans text-base normal-case tracking-normal outline-none focus:border-black"
+              ></textarea>
+            </label>
+            <button
+              type="submit"
+              class="md:col-span-2 flex items-center justify-between bg-[#111111] text-white px-6 py-5 font-mono text-xs tracking-widest uppercase hover:bg-zinc-800 transition-colors"
+            >
+              <span>Request an inspection</span>
+              <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- SECTION 7: FOOTER -->
+      <footer class="bg-[#111111] text-[#EAE8E3] pt-32 pb-12 px-6 md:px-12 lg:px-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8 mb-32">
+          <!-- Brand col -->
+          <div class="lg:col-span-2">
+            <h2
+              class="font-display text-5xl md:text-7xl font-semibold tracking-tighter uppercase leading-[0.85] mb-8"
+            >
+              Anay<br />Pest Control
+            </h2>
+            <p
+              class="font-mono text-xs tracking-widest text-zinc-500 uppercase leading-relaxed max-w-xs"
+            >
+              Professional pest management<br />
+              Bulakan, Bulacan<br />
+              Philippines
+            </p>
+          </div>
+
+          <!-- Links Col 1 -->
+          <div class="flex flex-col space-y-4 font-mono text-xs tracking-widest uppercase">
+            <h4 class="text-zinc-600 mb-4">Explore</h4>
+            <a href="#approach" class="hover:text-white transition-colors">Our Approach</a>
+            <a href="#estate" class="hover:text-white transition-colors">Gallery</a>
+            <a href="#services" class="hover:text-white transition-colors">Services</a>
+            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+          </div>
+
+          <!-- Newsletter Col -->
+          <div class="flex flex-col">
+            <h4 class="font-mono text-xs tracking-widest uppercase text-zinc-600 mb-8">
+              Service updates
+            </h4>
+            <form
+              class="flex border-b border-zinc-700 pb-2 group focus-within:border-white transition-colors"
+            >
+              <input
+                type="email"
+                placeholder="ENTER EMAIL ADDRESS"
+                class="bg-transparent border-none outline-none w-full font-mono text-xs tracking-widest uppercase placeholder:text-zinc-700 text-white"
+              />
+              <button type="submit" class="p-1 hover:text-white text-zinc-500 transition-colors">
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </form>
+
+            <!-- Custom Checkbox -->
+            <label class="mt-6 flex items-start space-x-3 cursor-pointer group">
+              <div class="relative flex-none mt-0.5">
+                <input type="checkbox" class="peer sr-only" />
+                <div
+                  class="w-4 h-4 border border-zinc-700 peer-checked:bg-white peer-checked:border-white transition-all rounded-[1px]"
+                ></div>
+                <i
+                  data-lucide="check"
+                  class="absolute inset-0 w-4 h-4 text-[#111111] opacity-0 peer-checked:opacity-100 pointer-events-none stroke-[3px]"
+                ></i>
+              </div>
+              <span
+                class="font-mono text-[10px] text-zinc-500 tracking-widest uppercase leading-snug group-hover:text-zinc-400 transition-colors"
+              >
+                I agree to receive service updates.<br />Read privacy policy.
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div
+          class="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 font-mono text-[10px] tracking-widest text-zinc-600 uppercase"
+        >
+          <div>© 2026 Milpestcon. All rights reserved.</div>
+          <div class="flex space-x-8">
+            <a href="#" class="hover:text-white transition-colors">Instagram</a>
+            <a href="#" class="hover:text-white transition-colors">Terms</a>
+            <a href="#" class="hover:text-white transition-colors">Legal</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Initialize Lucide Icons with specific stroke width
+      lucide.createIcons({
+        strokeWidth: 1.5,
+      })
+
+      // Simple interaction for Hero Bottom Navigation
+      const navBtns = document.querySelectorAll(".hero-nav-btn")
+      const heroImage = document.querySelector("#hero-image")
+      const heroTitle = document.querySelector("#hero-title")
+      const heroDetails = document.querySelector("#hero-details")
+      const sectionNumber = document.querySelector("#section-number")
+      const sectionLabel = document.querySelector("#section-label")
+      const sectionTitle = document.querySelector("#section-title")
+      const sectionPrimary = document.querySelector("#section-primary")
+      const sectionSecondary = document.querySelector("#section-secondary")
+      const sectionLink = document.querySelector("#section-link")
+      const sectionLinkLabel = document.querySelector("#section-link-label")
+
+      const heroSlides = {
+        1: {
+          image:
+            "https://images.unsplash.com/photo-1784091473955-f66695d19b58?q=80&w=1936&auto=format&fit=crop",
+          alt: "A protected family home in the Philippines",
+          title: ["Your Space.", "Your Peace.", "Be Protected."],
+          details: ["Thorough Inspection.", "Targeted Treatment.", "Lasting Protection."],
+          sectionLabel: "The Process",
+          sectionTitle: "Protection starts<br />with precision.",
+          primary:
+            "Every effective treatment begins with a careful inspection. We identify where pests enter, hide, and breed before recommending a solution built around your property and the people who live or work there.",
+          secondary:
+            "From termites and cockroaches to rodents and mosquitoes, we target the source—not just the symptoms—then help prevent the problem from returning.",
+          linkLabel: "See how we work",
+          link: "#estate",
+        },
+        2: {
+          image:
+            "https://images.pexels.com/photos/8293699/pexels-photo-8293699.jpeg?auto=compress&cs=tinysrgb&w=1920",
+          alt: "A professional carefully inspecting a home",
+          title: ["We Inspect.", "We Treat.", "We Prevent."],
+          details: ["Find The Source.", "Apply The Solution.", "Stop Their Return."],
+          sectionLabel: "The Mission",
+          sectionTitle: "Safer spaces.<br />Healthier lives.",
+          primary:
+            "Our mission is to protect Filipino homes and businesses with responsible pest-control solutions that are thorough, practical, and dependable.",
+          secondary:
+            "We combine local experience with careful treatment methods to solve infestations while respecting your family, your property, and your everyday routine.",
+          linkLabel: "Why choose us",
+          link: "#about",
+        },
+        3: {
+          image:
+            "https://images.pexels.com/photos/19789837/pexels-photo-19789837.jpeg?auto=compress&cs=tinysrgb&w=1920",
+          alt: "A pest-control professional treating a residential property",
+          title: ["Safer Homes.", "Healthier Living.", "Worry Less."],
+          details: ["Local Expertise.", "Reliable Service.", "Peace Of Mind."],
+          sectionLabel: "The Vision",
+          sectionTitle: "A pest-free<br />community.",
+          primary:
+            "We envision communities where every family and business can feel secure in a clean, healthy, and pest-free environment.",
+          secondary:
+            "By pairing effective treatment with prevention and education, we aim to build lasting protection—not temporary relief—one property at a time.",
+          linkLabel: "Protect your property",
+          link: "#contact",
+        },
+      }
+
+      navBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const slide = heroSlides[btn.dataset.target]
+
+          heroImage.classList.add("opacity-0")
+
+          window.setTimeout(() => {
+            heroImage.src = slide.image
+            heroImage.alt = slide.alt
+            heroTitle.innerHTML = slide.title.map((line) => `<span>${line}</span>`).join("")
+            heroDetails.innerHTML = slide.details.join("<br />")
+            sectionNumber.textContent = btn.dataset.target.padStart(2, "0")
+            sectionLabel.textContent = slide.sectionLabel
+            sectionTitle.innerHTML = slide.sectionTitle
+            sectionPrimary.textContent = slide.primary
+            sectionSecondary.textContent = slide.secondary
+            sectionLinkLabel.textContent = slide.linkLabel
+            sectionLink.href = slide.link
+            heroImage.classList.remove("opacity-0")
+          }, 200)
+
+          // Reset all
+          navBtns.forEach((b) => {
+            b.setAttribute("aria-pressed", "false")
+            b.classList.remove("text-[#111111]")
+            b.classList.add("text-zinc-400")
+            b.querySelector("span:first-child").classList.remove(
+              "border-[#111111]",
+              "font-semibold",
+            )
+            b.querySelector("span:first-child").classList.add("border-transparent")
+          })
+
+          // Set active
+          btn.setAttribute("aria-pressed", "true")
+          btn.classList.remove("text-zinc-400")
+          btn.classList.add("text-[#111111]")
+          btn.querySelector("span:first-child").classList.remove("border-transparent")
+          btn.querySelector("span:first-child").classList.add("border-[#111111]", "font-semibold")
+        })
+      })
+    </script>
+  </body>
+</html>
