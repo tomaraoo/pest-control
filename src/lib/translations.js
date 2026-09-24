@@ -1,7 +1,7 @@
 export const translations = {
   en: {
     nav: {
-      why: "Why Milpestcon",
+      why: "Why Milpestcon Pest Control Services",
       services: "Services",
       process: "How it works",
       faq: "FAQs",
@@ -26,10 +26,10 @@ export const translations = {
       photoLabel: "CARE FOR HOMES & BUSINESSES",
     },
     why: {
-      imageAlt: "Milpestcon team providing pest treatment",
+      imageAlt: "Milpestcon Pest Control Services team providing pest treatment",
       caption: "Local experience.",
       captionDetail: "Personal attention for every property.",
-      eyebrow: "The Milpestcon approach",
+      eyebrow: "The Milpestcon Pest Control Services approach",
       line1: "Good care starts",
       line2: "with listening.",
       text: "Pest concerns shouldn't take over your day. We bring practical experience, thoughtful treatment, and a team you can talk to.",
@@ -149,7 +149,7 @@ export const translations = {
         {
           question: "Which areas do you serve?",
           answer:
-            "Milpestcon serves homes and businesses in Bulacan and nearby areas. Send us your barangay, municipality, or city so we can confirm coverage for your location.",
+            "Milpestcon Pest Control Services serves homes and businesses in Bulacan and nearby areas. Send us your barangay, municipality, or city so we can confirm coverage for your location.",
         },
         {
           question: "Will one visit solve the problem?",
@@ -159,7 +159,7 @@ export const translations = {
       ],
     },
     contact: {
-      eyebrow: "Contact Milpestcon",
+      eyebrow: "Contact Milpestcon Pest Control Services",
       line1: "Need help with",
       line2: "a pest problem?",
       text: "Call, text, or email us to discuss your property and request a service schedule.",
@@ -176,7 +176,7 @@ export const translations = {
         "Local care for the places that matter. Pest inspection, treatment, and prevention for homes and businesses.",
       explore: "Explore",
       services: "Our services",
-      why: "Why Milpestcon",
+      why: "Why Milpestcon Pest Control Services",
       faq: "FAQs",
       contactUs: "Contact us",
       property: "Here for your property",
@@ -190,7 +190,7 @@ export const translations = {
   },
   fil: {
     nav: {
-      why: "Bakit Milpestcon",
+      why: "Bakit Milpestcon Pest Control Services",
       services: "Mga serbisyo",
       process: "Paano ito gumagana",
       faq: "Mga tanong",
@@ -215,10 +215,10 @@ export const translations = {
       photoLabel: "PANGANGALAGA SA BAHAY AT NEGOSYO",
     },
     why: {
-      imageAlt: "Koponan ng Milpestcon na nagsasagawa ng pest treatment",
+      imageAlt: "Koponan ng Milpestcon Pest Control Services na nagsasagawa ng pest treatment",
       caption: "Lokal na karanasan.",
       captionDetail: "Personal na atensiyon para sa bawat ari-arian.",
-      eyebrow: "Ang pamamaraan ng Milpestcon",
+      eyebrow: "Ang pamamaraan ng Milpestcon Pest Control Services",
       line1: "Ang mahusay na serbisyo ay",
       line2: "nagsisimula sa pakikinig.",
       text: "Hindi dapat kontrolin ng problema sa peste ang inyong araw. Hatid namin ang praktikal na karanasan, maingat na paggamot, at koponang madaling makausap.",
@@ -338,7 +338,7 @@ export const translations = {
         {
           question: "Anong mga lugar ang inyong sineserbisyuhan?",
           answer:
-            "Naglilingkod ang Milpestcon sa mga bahay at negosyo sa Bulacan at kalapit na lugar. Ipadala ang inyong barangay, munisipalidad, o lungsod upang makumpirma namin ang coverage.",
+            "Naglilingkod ang Milpestcon Pest Control Services sa mga bahay at negosyo sa Bulacan at kalapit na lugar. Ipadala ang inyong barangay, munisipalidad, o lungsod upang makumpirma namin ang coverage.",
         },
         {
           question: "Sapat na ba ang isang pagbisita?",
@@ -348,7 +348,7 @@ export const translations = {
       ],
     },
     contact: {
-      eyebrow: "Makipag-ugnayan sa Milpestcon",
+      eyebrow: "Makipag-ugnayan sa Milpestcon Pest Control Services",
       line1: "May problema ba",
       line2: "kayo sa peste?",
       text: "Tumawag, mag-text, o mag-email upang talakayin ang inyong lugar at humiling ng iskedyul.",
@@ -365,7 +365,7 @@ export const translations = {
         "Lokal na pangangalaga para sa mahahalagang lugar. Pest inspection, treatment, at prevention para sa bahay at negosyo.",
       explore: "Tingnan",
       services: "Mga serbisyo",
-      why: "Bakit Milpestcon",
+      why: "Bakit Milpestcon Pest Control Services",
       faq: "Mga tanong",
       contactUs: "Makipag-ugnayan",
       property: "Handa para sa inyong ari-arian",
