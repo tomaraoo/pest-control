@@ -1,0 +1,534 @@
+<!DOCTYPE html><html lang="nl" class="scroll-smooth"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nugter Architectuur | Architect in Den Haag</title>
+<!-- Google Fonts: Inter (Sans) & Playfair Display (Serif) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Iconify -->
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<!-- Tailwind Config inline voor font families (zoals gevraagd geen complexe setup, we injecteren het direct) -->
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+serif: ['Playfair Display', 'serif'],
+}
+}
+}
+}
+</script>
+</head>
+<body class="font-sans bg-[#F4F1EA] text-[#1C1A16] antialiased selection:bg-[#8A6A38] selection:text-[#F4F1EA] overflow-x-hidden">
+
+    <!-- Sticky Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#F4F1EA]/90 backdrop-blur-md border-b border-[#D8D1C4]/40 transition-all duration-300">
+        <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex justify-between items-center h-20 lg:h-24">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center">
+                <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/10/A-logo-bruin-_medium-1.png" alt="Nugter Architectuur Logo" class="h-10 lg:h-12 object-contain">
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#" class="text-sm tracking-wide font-medium text-[#1C1A16] hover:text-[#8A6A38] transition-colors">Home</a>
+                <a href="#bureau" class="text-sm tracking-wide font-medium text-[#1C1A16] hover:text-[#8A6A38] transition-colors">Het Bureau</a>
+                <a href="#diensten" class="text-sm tracking-wide font-medium text-[#1C1A16] hover:text-[#8A6A38] transition-colors">Diensten</a>
+                <a href="#projecten" class="text-sm tracking-wide font-medium text-[#1C1A16] hover:text-[#8A6A38] transition-colors">Projecten</a>
+                <a href="#werkwijze" class="text-sm tracking-wide font-medium text-[#1C1A16] hover:text-[#8A6A38] transition-colors">Werkwijze</a>
+            </nav>
+
+            <!-- Desktop Right Actions -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="tel:0702230022" class="flex items-center gap-2 text-sm tracking-wide font-medium text-[#1C1A16] hover:text-[#8A6A38] transition-colors">
+                    <iconify-icon icon="solar:phone-linear" class="text-lg"></iconify-icon>
+                    070 22 300 22
+                </a>
+                <a href="#contact" class="inline-flex items-center justify-center bg-[#8A6A38] text-[#F4F1EA] px-6 py-3 text-sm tracking-wide font-medium hover:bg-[#A6864F] transition-all duration-300 hover:-translate-y-0.5">
+                    Maak een afspraak
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center text-[#1C1A16] text-2xl">
+                <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-[#F4F1EA] flex-col pt-24 px-6 pb-12 overflow-y-auto">
+        <nav class="flex flex-col gap-6 text-center mt-12">
+            <a href="#" class="mobile-link text-2xl font-serif tracking-tight text-[#1C1A16]">Home</a>
+            <a href="#bureau" class="mobile-link text-2xl font-serif tracking-tight text-[#1C1A16]">Het Bureau</a>
+            <a href="#diensten" class="mobile-link text-2xl font-serif tracking-tight text-[#1C1A16]">Diensten</a>
+            <a href="#projecten" class="mobile-link text-2xl font-serif tracking-tight text-[#1C1A16]">Projecten</a>
+            <a href="#werkwijze" class="mobile-link text-2xl font-serif tracking-tight text-[#1C1A16]">Werkwijze</a>
+            <a href="#contact" class="mobile-link text-2xl font-serif tracking-tight text-[#8A6A38] mt-4">Contact</a>
+        </nav>
+        <div class="mt-auto flex flex-col items-center gap-4 pt-12">
+            <a href="tel:0702230022" class="text-base tracking-wide font-medium text-[#1C1A16]">070 22 300 22</a>
+            <a href="mailto:info@nugterarchitectuur.nl" class="text-base tracking-wide font-light text-[#1C1A16]">info@nugterarchitectuur.nl</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 px-6 lg:px-12 max-w-[1600px] mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
+            <div class="w-full lg:w-5/12 flex flex-col justify-center scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);">
+                <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-6 block">Architect Den Haag</span>
+                <h1 class="font-serif text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] tracking-tight font-medium text-[#1C1A16] mb-8">
+                    Architectuur in de stad, met oog voor context en toekomst
+                </h1>
+                <p class="text-lg font-light text-[#1C1A16]/80 leading-relaxed mb-10 max-w-lg">
+                    Creatieve, heldere ontwerpen met respect voor de omgeving, van idee tot vergunning en realisatie.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="inline-flex items-center justify-center bg-[#8A6A38] text-[#F4F1EA] px-8 py-4 text-sm tracking-wide font-medium hover:bg-[#A6864F] transition-all duration-300 hover:-translate-y-0.5">
+                        Maak een afspraak
+                    </a>
+                    <a href="#projecten" class="inline-flex items-center justify-center border border-[#D8D1C4] text-[#1C1A16] px-8 py-4 text-sm tracking-wide font-medium hover:border-[#1C1A16] transition-all duration-300">
+                        Bekijk projecten
+                    </a>
+                </div>
+            </div>
+            
+            <div class="w-full lg:w-7/12 relative scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;">
+                <div class="relative w-full aspect-[4/3] lg:aspect-[3/4] overflow-hidden bg-[#D8D1C4]/20">
+                    <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/10/nugter-architectuur-Den-Haag-villa-bilderdam-03.jpg" alt="Villa Bilderdam" class="absolute inset-0 w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST STRIP -->
+        <section class="bg-[#D8D1C4]/40 border-y border-[#D8D1C4]">
+            <div class="max-w-[1600px] mx-auto px-6 py-10 lg:py-12 flex flex-wrap justify-center lg:justify-between items-center gap-x-12 gap-y-8 scroll-reveal" style="opacity: 0; transform: translateY(1rem); transition: all 0.8s ease-out;">
+                <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2024/07/BNA-logo-300x180.png" alt="BNA Logo" class="h-8 lg:h-10 object-contain mix-blend-multiply opacity-80">
+                <span class="text-sm font-medium tracking-wide text-[#1C1A16]/80 hidden md:block">20+ realisaties in Den Haag</span>
+                <span class="text-sm font-medium tracking-wide text-[#1C1A16]/80 hidden lg:block">BNA-architect</span>
+                <span class="text-sm font-medium tracking-wide text-[#1C1A16]/80 hidden md:block">Van idee tot vergunning en realisatie</span>
+                <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/11/architectenregister_bruin-300x119.png" alt="Architectenregister Logo" class="h-7 lg:h-9 object-contain mix-blend-multiply opacity-80">
+            </div>
+        </section>
+
+        <!-- HET BUREAU (INTRO) -->
+        <section id="bureau" class="py-24 lg:py-32 px-6 lg:px-12 max-w-[1600px] mx-auto">
+            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+                <div class="w-full lg:w-1/2 scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out;">
+                    <div class="aspect-[4/5] w-full overflow-hidden relative">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2020/03/nugter-architectuur-architecten-renovatie-voorschoten-uitbouw-01.jpg" alt="Uitbouw Voorschoten" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.2s;">
+                    <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-6 block">Het Bureau</span>
+                    <h2 class="font-serif text-3xl lg:text-5xl tracking-tight font-medium mb-8 text-[#1C1A16]">
+                        Architectuur die zich voegt, en karakter toont
+                    </h2>
+                    <div class="text-base font-light text-[#1C1A16]/80 space-y-6 max-w-xl leading-relaxed">
+                        <p>
+                            In een stad als Den Haag heeft elke ruimte zijn eigen verhaal. Elke verbouwing, uitbreiding of dakopbouw voegt iets toe aan het grotere geheel en verdient een ontwerp dat niet alleen functioneert, maar ook past.
+                        </p>
+                        <p>
+                            Wij ontwerpen met respect voor de omgeving, de bestaande architectuur en de mensen die er wonen. Onze ontwerpen zijn functioneel, esthetisch en duurzaam, geworteld in de plek.
+                        </p>
+                    </div>
+                    <blockquote class="mt-10 border-l-2 border-[#8A6A38] pl-6 py-2">
+                        <p class="font-serif text-xl lg:text-2xl text-[#8A6A38] font-medium italic tracking-tight">
+                            "Architectuur die zich voegt waar dat nodig is, en karakter toont waar dat kan."
+                        </p>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIENSTEN -->
+        <section id="diensten" class="py-24 lg:py-32 px-6 lg:px-12 bg-[#F4F1EA] border-t border-[#D8D1C4]/40">
+            <div class="max-w-[1600px] mx-auto">
+                <div class="text-center mb-16 scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out;">
+                    <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-4 block">Onze Expertise</span>
+                    <h2 class="font-serif text-3xl lg:text-5xl tracking-tight font-medium text-[#1C1A16]">Wat wij doen</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                    <!-- Card 1 -->
+                    <div class="group scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.1s;">
+                        <div class="aspect-[4/3] overflow-hidden bg-[#D8D1C4]/20 mb-6 relative">
+                            <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2020/02/nugter-architectuur-dakopbouw-den-haag-vogelwijk.jpg" alt="Dakopbouw Vogelwijk" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-3">Dakopbouw</h3>
+                        <p class="text-sm font-light text-[#1C1A16]/80 leading-relaxed mb-6">
+                            Meer ruimte en licht bovenop uw woning, zorgvuldig ingepast in het straatbeeld.
+                        </p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="group scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.2s;">
+                        <div class="aspect-[4/3] overflow-hidden bg-[#D8D1C4]/20 mb-6 relative">
+                            <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2020/10/nugter-architectuur-den-haag-uitbouw-voorburg-back.jpg" alt="Uitbouw Voorburg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-3">Uitbouw</h3>
+                        <p class="text-sm font-light text-[#1C1A16]/80 leading-relaxed mb-6">
+                            Een uitbreiding die naadloos aansluit op uw woning en de tuin, met veel daglicht.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="group scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.3s;">
+                        <div class="aspect-[4/3] overflow-hidden bg-[#D8D1C4]/20 mb-6 relative">
+                            <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2022/08/nugter-architectuur-nieuwbouw-woning-den-haag.jpg" alt="Nieuwbouw Den Haag" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        </div>
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-3">Nieuwbouw</h3>
+                        <p class="text-sm font-light text-[#1C1A16]/80 leading-relaxed mb-6">
+                            Een woning die volledig op maat is ontworpen, van eerste schets tot oplevering.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTEN GALLERY -->
+        <section id="projecten" class="py-24 lg:py-32 px-6 lg:px-12 bg-[#F4F1EA]">
+            <div class="max-w-[1600px] mx-auto">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6 scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out;">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-4 block">Projecten</span>
+                        <h2 class="font-serif text-3xl lg:text-5xl tracking-tight font-medium text-[#1C1A16]">Een selectie van ons werk</h2>
+                    </div>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-[#1C1A16] hover:text-[#8A6A38] transition-colors text-sm font-medium tracking-wide pb-2 border-b border-[#1C1A16] hover:border-[#8A6A38]">
+                        Start uw project <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                    <!-- Project 1 -->
+                    <div class="group relative aspect-[4/5] overflow-hidden bg-[#1C1A16] cursor-pointer scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.1s;">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/10/nugter-architectuur-Den-Haag-villa-bilderdam-03.jpg" alt="Villa Bilderdam" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-60 opacity-90">
+                        <div class="absolute inset-0 flex items-end p-8 bg-gradient-to-t from-[#1C1A16]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h3 class="font-serif text-2xl tracking-tight font-medium text-[#F4F1EA] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                Moderne Villa, Bilderdam
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="group relative aspect-[4/5] overflow-hidden bg-[#1C1A16] cursor-pointer scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.2s;">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/11/Architect-Den-Haag-Nieuwbouw-woning-petroleumhaven-03.jpg" alt="Petroleumhaven" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-60 opacity-90">
+                        <div class="absolute inset-0 flex items-end p-8 bg-gradient-to-t from-[#1C1A16]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h3 class="font-serif text-2xl tracking-tight font-medium text-[#F4F1EA] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                Nieuwbouw woning, Petroleumhaven Den Haag
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="group relative aspect-[4/5] overflow-hidden bg-[#1C1A16] cursor-pointer scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.3s;">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2020/03/nugter-architectuur-architecten-renovatie-voorschoten-uitbouw-01.jpg" alt="Uitbouw Voorschoten" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-60 opacity-90">
+                        <div class="absolute inset-0 flex items-end p-8 bg-gradient-to-t from-[#1C1A16]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h3 class="font-serif text-2xl tracking-tight font-medium text-[#F4F1EA] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                Uitbouw, Voorschoten
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="group relative aspect-[4/5] overflow-hidden bg-[#1C1A16] cursor-pointer scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.1s;">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2020/02/nugter-architectuur-dakopbouw-den-haag-vogelwijk.jpg" alt="Dakopbouw Vogelwijk" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-60 opacity-90">
+                        <div class="absolute inset-0 flex items-end p-8 bg-gradient-to-t from-[#1C1A16]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h3 class="font-serif text-2xl tracking-tight font-medium text-[#F4F1EA] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                Dakopbouw, Vogelwijk Den Haag
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="group relative aspect-[4/5] overflow-hidden bg-[#1C1A16] cursor-pointer scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.2s;">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/11/zelfbouw-Villa-05-Nugter-Architectuur.jpg" alt="Zelfbouw Villa" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-60 opacity-90">
+                        <div class="absolute inset-0 flex items-end p-8 bg-gradient-to-t from-[#1C1A16]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h3 class="font-serif text-2xl tracking-tight font-medium text-[#F4F1EA] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                Zelfbouw villa
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="group relative aspect-[4/5] overflow-hidden bg-[#1C1A16] cursor-pointer scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.3s;">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/10/interieur-rotterdam-detail.jpg" alt="Interieur Rotterdam" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-60 opacity-90">
+                        <div class="absolute inset-0 flex items-end p-8 bg-gradient-to-t from-[#1C1A16]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <h3 class="font-serif text-2xl tracking-tight font-medium text-[#F4F1EA] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                Interieur, Rotterdam
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WERKWIJZE -->
+        <section id="werkwijze" class="py-24 lg:py-32 px-6 lg:px-12 border-t border-[#D8D1C4]/40">
+            <div class="max-w-[1600px] mx-auto">
+                <div class="mb-16 scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out;">
+                    <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-4 block">Proces</span>
+                    <h2 class="font-serif text-3xl lg:text-5xl tracking-tight font-medium text-[#1C1A16] mb-6">Onze Werkwijze</h2>
+                    <p class="text-lg font-light text-[#1C1A16]/80 max-w-2xl">
+                        Persoonlijk contact en duidelijke communicatie, van begin tot eind.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                    <!-- Step 1 -->
+                    <div class="relative scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.1s;">
+                        <div class="text-6xl font-serif text-[#D8D1C4] mb-4 font-light">01</div>
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-3">Idee.</h3>
+                        <p class="text-sm font-light text-[#1C1A16]/80 leading-relaxed">
+                            Een vrijblijvend kennismakingsgesprek waarin we uw wensen en de mogelijkheden bespreken.
+                        </p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.2s;">
+                        <div class="text-6xl font-serif text-[#D8D1C4] mb-4 font-light">02</div>
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-3">Ontwerp.</h3>
+                        <p class="text-sm font-light text-[#1C1A16]/80 leading-relaxed">
+                            We vertalen uw wensen naar een helder, passend ontwerp met oog voor context en budget.
+                        </p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.3s;">
+                        <div class="text-6xl font-serif text-[#D8D1C4] mb-4 font-light">03</div>
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-3">Vergunning.</h3>
+                        <p class="text-sm font-light text-[#1C1A16]/80 leading-relaxed">
+                            Wij verzorgen de aanvraag en de begeleiding richting de gemeente.
+                        </p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.4s;">
+                        <div class="text-6xl font-serif text-[#D8D1C4] mb-4 font-light">04</div>
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-3">Realisatie.</h3>
+                        <p class="text-sm font-light text-[#1C1A16]/80 leading-relaxed">
+                            Begeleiding tijdens de bouw tot en met de oplevering.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="py-24 lg:py-32 px-6 lg:px-12 bg-[#1C1A16] text-[#F4F1EA]">
+            <div class="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24">
+                
+                <!-- Form Side -->
+                <div class="w-full lg:w-7/12 scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out;">
+                    <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-6 block">Contact</span>
+                    <h2 class="font-serif text-3xl lg:text-5xl tracking-tight font-medium mb-12">Maak een afspraak</h2>
+                    
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <input type="text" placeholder="Naam" class="w-full bg-transparent border-b border-[#D8D1C4]/20 py-3 text-[#F4F1EA] placeholder-[#F4F1EA]/50 focus:outline-none focus:border-[#8A6A38] transition-colors text-sm font-light">
+                            <input type="email" placeholder="E-mailadres" class="w-full bg-transparent border-b border-[#D8D1C4]/20 py-3 text-[#F4F1EA] placeholder-[#F4F1EA]/50 focus:outline-none focus:border-[#8A6A38] transition-colors text-sm font-light">
+                        </div>
+                        <input type="tel" placeholder="Telefoonnummer" class="w-full bg-transparent border-b border-[#D8D1C4]/20 py-3 text-[#F4F1EA] placeholder-[#F4F1EA]/50 focus:outline-none focus:border-[#8A6A38] transition-colors text-sm font-light">
+                        <textarea placeholder="Vertel over uw project" rows="4" class="w-full bg-transparent border-b border-[#D8D1C4]/20 py-3 text-[#F4F1EA] placeholder-[#F4F1EA]/50 focus:outline-none focus:border-[#8A6A38] transition-colors text-sm font-light resize-none"></textarea>
+                        
+                        <!-- Custom Checkbox -->
+                        <label class="flex items-start gap-4 cursor-pointer group mt-6">
+                            <div class="relative flex items-center justify-center mt-0.5">
+                                <input type="checkbox" class="peer sr-only">
+                                <div class="w-5 h-5 border border-[#D8D1C4]/40 group-hover:border-[#8A6A38] peer-checked:bg-[#8A6A38] peer-checked:border-[#8A6A38] transition-all flex items-center justify-center">
+                                    <iconify-icon icon="solar:check-linear" class="text-[#F4F1EA] opacity-0 peer-checked:opacity-100 transition-opacity text-sm"></iconify-icon>
+                                </div>
+                            </div>
+                            <span class="text-sm font-light text-[#F4F1EA]/70 leading-relaxed">
+                                Ik ga akkoord met het verwerken van mijn gegevens om contact op te nemen over mijn aanvraag.
+                            </span>
+                        </label>
+
+                        <button type="button" class="mt-8 inline-flex items-center justify-center bg-[#8A6A38] text-[#F4F1EA] px-8 py-4 text-sm tracking-wide font-medium hover:bg-[#A6864F] transition-all duration-300 hover:-translate-y-0.5 border border-[#8A6A38] hover:border-[#A6864F]">
+                            Verstuur aanvraag
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info Side -->
+                <div class="w-full lg:w-4/12 lg:pt-20 scroll-reveal" style="opacity: 0; transform: translateY(2rem); transition: all 0.8s ease-out 0.2s;">
+                    <div class="bg-[#F4F1EA]/5 p-8 lg:p-10 border border-[#D8D1C4]/10">
+                        <h3 class="font-serif text-2xl tracking-tight font-medium mb-8">Direct contact</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <iconify-icon icon="solar:phone-linear" class="text-xl text-[#8A6A38] mt-1"></iconify-icon>
+                                <div>
+                                    <a href="tel:0702230022" class="text-sm font-light tracking-wide hover:text-[#8A6A38] transition-colors block mb-1">070 22 300 22</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <iconify-icon icon="solar:letter-linear" class="text-xl text-[#8A6A38] mt-1"></iconify-icon>
+                                <div>
+                                    <a href="mailto:info@nugterarchitectuur.nl" class="text-sm font-light tracking-wide hover:text-[#8A6A38] transition-colors block mb-1">info@nugterarchitectuur.nl</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <iconify-icon icon="solar:map-point-linear" class="text-xl text-[#8A6A38] mt-1"></iconify-icon>
+                                <div>
+                                    <p class="text-sm font-light tracking-wide leading-relaxed">
+                                        Koninginnegracht 19<br>
+                                        2514 AB Den Haag
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="border-[#D8D1C4]/10 my-8">
+                        
+                        <p class="text-sm font-light text-[#F4F1EA]/60 italic">
+                            Wij reageren doorgaans binnen een werkdag.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#1C1A16] pt-16 pb-8 px-6 lg:px-12 border-t border-[#F4F1EA]/10 text-[#F4F1EA]">
+        <div class="max-w-[1600px] mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-12 mb-16">
+                
+                <div class="w-full lg:w-1/3">
+                    <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/10/BES.2.2-0.-N-_-A-003.png" alt="Nugter Architectuur Logo Wit" class="h-12 object-contain mb-8">
+                    <p class="text-sm font-light text-[#F4F1EA]/70 max-w-xs leading-relaxed mb-6">
+                        Architectuur in de stad, met oog voor context en toekomst. Van eerste schets tot realisatie in Den Haag en omstreken.
+                    </p>
+                    <div class="flex gap-6 opacity-70 mix-blend-screen grayscale">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2024/07/BNA-logo-300x180.png" alt="BNA" class="h-6 object-contain">
+                        <img src="https://usercontent.one/wp/www.nugterarchitectuur.nl/wp-content/uploads/2019/11/architectenregister_bruin-300x119.png" alt="Architectenregister" class="h-5 object-contain">
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-12 lg:gap-24">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-6 block">Navigatie</span>
+                        <nav class="flex flex-col gap-4">
+                            <a href="#" class="text-sm font-light text-[#F4F1EA]/80 hover:text-[#8A6A38] transition-colors">Home</a>
+                            <a href="#bureau" class="text-sm font-light text-[#F4F1EA]/80 hover:text-[#8A6A38] transition-colors">Het Bureau</a>
+                            <a href="#diensten" class="text-sm font-light text-[#F4F1EA]/80 hover:text-[#8A6A38] transition-colors">Diensten</a>
+                            <a href="#projecten" class="text-sm font-light text-[#F4F1EA]/80 hover:text-[#8A6A38] transition-colors">Projecten</a>
+                            <a href="#werkwijze" class="text-sm font-light text-[#F4F1EA]/80 hover:text-[#8A6A38] transition-colors">Werkwijze</a>
+                        </nav>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] font-medium text-[#8A6A38] mb-6 block">Contact</span>
+                        <div class="flex flex-col gap-4">
+                            <a href="tel:0702230022" class="text-sm font-light text-[#F4F1EA]/80 hover:text-[#8A6A38] transition-colors">070 22 300 22</a>
+                            <a href="mailto:info@nugterarchitectuur.nl" class="text-sm font-light text-[#F4F1EA]/80 hover:text-[#8A6A38] transition-colors">info@nugterarchitectuur.nl</a>
+                            <p class="text-sm font-light text-[#F4F1EA]/80 mt-2">
+                                Koninginnegracht 19<br>
+                                2514 AB Den Haag
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-[#F4F1EA]/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs font-light text-[#F4F1EA]/50">
+                    © 2025 Nugter Architectuur. Alle rechten voorbehouden.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-xs font-light text-[#F4F1EA]/50 hover:text-[#F4F1EA] transition-colors">Privacybeleid</a>
+                    <a href="#" class="text-xs font-light text-[#F4F1EA]/50 hover:text-[#F4F1EA] transition-colors">Algemene Voorwaarden</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts voor Micro-interacties en functionaliteit -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-sm');
+                    header.style.paddingTop = '0.5rem';
+                    header.style.paddingBottom = '0.5rem';
+                } else {
+                    header.classList.remove('shadow-sm');
+                    header.style.paddingTop = '1rem';
+                    header.style.paddingBottom = '1rem';
+                }
+            });
+
+            // Scroll Reveal Logic via inline styles direct aanpassen
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            // Initial check for elements already in viewport on load
+            const checkInitialReveal = () => {
+                reveals.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < window.innerHeight) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            checkInitialReveal();
+            setTimeout(checkInitialReveal, 100); // Fail-safe for rendering delay
+
+            // Intersection Observer voor de rest van de pagina
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target); // Reveal only once
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(el => {
+                // Skip if already revealed initially
+                if (el.style.opacity !== '1') {
+                    observer.observe(el);
+                }
+            });
+
+            // Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const mobileLinks = menu.querySelectorAll('.mobile-link');
+            const icon = btn.querySelector('iconify-icon');
+
+            const toggleMenu = () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+                if(menu.classList.contains('flex')) {
+                    icon.setAttribute('icon', 'solar:close-linear');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    icon.setAttribute('icon', 'solar:hamburger-menu-linear');
+                    document.body.style.overflow = '';
+                }
+            };
+
+            btn.addEventListener('click', toggleMenu);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        });
+    </script>
+
+</body></html>
