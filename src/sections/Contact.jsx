@@ -1,63 +1,26 @@
-import { ArrowUpRight, Clock3, Mail, MapPin, Phone } from "lucide-react"
-import { useLanguage } from "../lib/i18n"
-import { translations } from "../lib/translations"
-
-const phone = "+63 912 345 6789"
-const email = "sample@gmail.com"
+import { Mail, PhoneCall } from "lucide-react"
 
 export default function Contact() {
-  const { language } = useLanguage()
-  const copy = translations[language].contact
   return (
-    <section id="contact" className="contact-section">
-      <div className="section-shell">
-        <div className="contact-panel">
-          <div className="contact-copy">
-            <span className="eyebrow">{copy.eyebrow}</span>
-            <h2>
-              {copy.line1}
-              <br />
-              {copy.line2}
-            </h2>
-            <p>{copy.text}</p>
+    <>
+      <section id="contact" className="bg-[#8d6b38] px-6 py-24 text-white">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_.8fr]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[.25em] text-white/70 py-2">Contact Milpestcon</p>
+            <h2 className="mt-5 font-['DM_Serif_Display'] text-6xl leading-none py-3">For fast help, call us.</h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">Arrange your inspection or pest treatment by phone. Our email is for quotation requests only.</p>
+            <a href="tel:+639667085441" className="mt-8 inline-flex items-center gap-3 border-b-4 border-white pb-2 text-3xl font-bold">
+              <PhoneCall size={24} /> (+63) 966-708-5441</a>
           </div>
-
-          <div className="contact-options">
-            <a className="contact-option" href={`tel:${phone.replace(/\s/g, "")}`}>
-              <span className="contact-option-icon">
-                <Phone size={22} />
-              </span>
-              <span>
-                <small>{copy.phone}</small>
-                <strong>{phone}</strong>
-              </span>
-              <ArrowUpRight size={19} />
-            </a>
-
-            <a className="contact-option" href={`mailto:${email}`}>
-              <span className="contact-option-icon">
-                <Mail size={22} />
-              </span>
-              <span>
-                <small>{copy.email}</small>
-                <strong>{email}</strong>
-              </span>
-              <ArrowUpRight size={19} />
-            </a>
-
-            <div className="contact-meta">
-              <span>
-                <MapPin size={18} />
-                {copy.area}
-              </span>
-              <span>
-                <Clock3 size={18} />
-                {copy.hours}
-              </span>
-            </div>
+          <div className="bg-[#f6f2ea] p-8 text-[#292821]">
+            <p className="text-xs font-bold uppercase tracking-[.2em] text-[#8d6b38] py-2">Quotations by email</p>
+            <h3 className="mt-4 font-['DM_Serif_Display'] text-3xl">Tell us about your property.</h3>
+            <p className="mt-4 leading-relaxed text-[#292821]/70">For a quotation, email your pest issue, location, and the service you need.</p>
+            <a href="mailto:pestcontrolanaymilpestcon@gmail.com" className="mt-7 inline-flex items-center gap-2 font-bold text-[#8d6b38]">
+              <Mail size={18} />pestcontrolanaymilpestcon@gmail.com</a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

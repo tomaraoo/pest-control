@@ -1,118 +1,84 @@
-import { useEffect, useRef, useState } from "react"
-import { ArrowUpRight, Menu, X } from "lucide-react"
+import { useState } from "react"
+import { Menu, X } from "lucide-react"
+
 import logo from "../assets/logo.png"
-import { scrollToSection } from "../lib/constants"
-import { useLanguage } from "../lib/i18n"
-import { translations } from "../lib/translations"
+
+const links = [
+  { id: "services", label: "Services" },
+  { id: "approach", label: "Approach" },
+  { id: "contact", label: "Contact" },
+]
 
 export default function AppHeader() {
-  const { language, setLanguage } = useLanguage()
-  const copy = translations[language].nav
-  const links = [
-    { id: "why-us", label: copy.why },
-    { id: "services", label: copy.services },
-    { id: "process", label: copy.process },
-    { id: "faq", label: copy.faq },
-  ]
   const [open, setOpen] = useState(false)
-  const root = useRef(null)
-  const menuButton = useRef(null)
-  useEffect(() => {
-    function dismiss(event) {
-      if (event.key === "Escape") {
-        setOpen(false)
-        menuButton.current?.focus()
-      }
-      if (event.type === "pointerdown" && !root.current?.contains(event.target)) setOpen(false)
-    }
-    const desktop = window.matchMedia("(min-width: 1024px)")
-    const resize = () => {
-      if (desktop.matches) setOpen(false)
-    }
-    document.addEventListener("keydown", dismiss)
-    document.addEventListener("pointerdown", dismiss)
-    desktop.addEventListener("change", resize)
-    return () => {
-      document.removeEventListener("keydown", dismiss)
-      document.removeEventListener("pointerdown", dismiss)
-      desktop.removeEventListener("change", resize)
-    }
-  }, [])
+  const close = () => setOpen(false)
 
-  function go(id) {
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    })
     setOpen(false)
-    scrollToSection(id)
   }
 
   return (
-    <header ref={root} className="site-header">
-      <div className="header-inner">
-        <a href="/" className="brand" aria-label="Milpestcon home">
-          <img src={logo} alt="" />
-          <span>
-            <strong>MILPESTCON</strong>
-            <small>ANAY & PEST CONTROL</small>
-          </span>
+    <header className="sticky top-0 z-50 px-6 py-6 bg-[#E8E3D9]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <a href="#home" className="font-['DM_Serif_Display'] text-2xl flex items-center gap-3" aria-label="Milpestcon home">
+          <img src={logo} alt="" className="size-10" />
+          <div>Milpestcon <span className="text-[#8d6b38]">Pest Control</span></div>
         </a>
-        <nav className="desktop-nav" aria-label={copy.main}>
+
+        <nav className="hidden gap-8 text-sm md:flex" aria-label="Main navigation">
           {links.map((link) => (
-            <button key={link.id} type="button" onClick={() => go(link.id)}>
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection(link.id)
+              }}
+            >
               {link.label}
-            </button>
+            </a>
           ))}
         </nav>
-        <div className="language-switch" role="group" aria-label="Language / Wika">
-          <button
-            type="button"
-            className={language === "en" ? "active" : ""}
-            onClick={() => setLanguage("en")}
-            aria-pressed={language === "en"}
-            title="English (United States)"
-          >
-            US
-          </button>
-          <button
-            type="button"
-            className={language === "fil" ? "active" : ""}
-            onClick={() => setLanguage("fil")}
-            aria-pressed={language === "fil"}
-            title="Filipino (Philippines)"
-          >
-            PH
-          </button>
-        </div>
+
+        <a href="tel:+639000000000" className="hidden text-sm font-bold text-[#8d6b38] md:inline border-2 border-[#8d6b38] p-3 rounded-sm hover:bg-[#292821] hover:text-[#f4f4f4] hover:border-[#292821]">
+          CALL NOW
+        </a>
+
         <button
           type="button"
-          className="button button-primary header-cta"
-          onClick={() => go("contact")}
-        >
-          {copy.contact}
-          <ArrowUpRight size={16} />
-        </button>
-        <button
-          ref={menuButton}
-          type="button"
-          className="menu-toggle"
+          className="grid h-10 w-10 place-items-center md:hidden"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
-          aria-controls={open ? "mobile-navigation" : undefined}
-          aria-label={open ? copy.close : copy.open}
+          aria-label={open ? "Close menu" : "Open menu"}
         >
-          {open ? <X size={23} /> : <Menu size={23} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
+
       {open && (
-        <nav id="mobile-navigation" className="mobile-nav" aria-label={copy.mobile}>
+        <nav
+          className="mx-auto mt-6 flex max-w-7xl flex-col gap-4 border-t border-black/10 pt-5 text-sm md:hidden"
+          aria-label="Mobile navigation"
+        >
           {links.map((link) => (
-            <button key={link.id} type="button" onClick={() => go(link.id)}>
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection(link.id)
+              }}
+            >
               {link.label}
-              <ArrowUpRight size={16} />
-            </button>
+            </a>
           ))}
-          <button type="button" className="button button-primary" onClick={() => go("contact")}>
-            {copy.contact}
-            <ArrowUpRight size={16} />
-          </button>
+
+          <a href="tel:+639000000000" onClick={close} className="font-bold text-[#8d6b38]">
+            CALL NOW
+          </a>
         </nav>
       )}
     </header>
