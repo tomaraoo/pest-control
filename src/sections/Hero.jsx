@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="flex flex-col justify-center">
         <p className="text-xs font-bold uppercase tracking-[.25em] text-[#8d6b38]">Bulakan, Bulacan</p>
         <h1 className="mt-6 font-['DM_Serif_Display'] text-6xl leading-[.92] sm:text-7xl">A peaceful home begins with reliable pest control.</h1>
-        <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#292821]/70">Milpestcon brings thorough inspection, targeted treatment, and practical prevention to homes and businesses.</p>
+        <p className="mt-7 max-w-lg text-lg leading-relaxed text-[#292821]/70">Anay Milpestcon Pest Control brings thorough inspection, targeted treatment, and practical prevention to homes and businesses.</p>
         <div className="mt-9 flex flex-col items-start gap-5">
           <p className="text-sm text-[#292821] uppercase font-bold">
             {/* Call first for fast service. Email is for quotations only. */}
