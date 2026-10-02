@@ -6,7 +6,7 @@ export default function Contact() {
       <section id="contact" className="bg-[#8d6b38] px-6 py-24 text-white">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_.8fr]">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.25em] text-white/70 py-2">Contact Milpestcon</p>
+            <p className="text-xs font-bold uppercase tracking-[.25em] text-white/70 py-2">Contact Anay Milpestcon Pest Control</p>
             <h2 className="mt-5 font-['DM_Serif_Display'] text-6xl leading-none py-3">For fast help, call us.</h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">Arrange your inspection or pest treatment by phone. Our email is for quotation requests only.</p>
             <a href="tel:+639667085441" className="mt-8 inline-flex items-center gap-3 border-b-4 border-white pb-2 text-3xl font-bold">
