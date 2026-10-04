@@ -22,7 +22,7 @@ export const Clients = () => {
             Our Clients
           </h2>
 
-          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-[#292821]/65 sm:text-base">
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#292821]/65 sm:text-base">
             Proud to provide reliable pest control services to homes, businesses, and organizations.
           </p>
         </div>
