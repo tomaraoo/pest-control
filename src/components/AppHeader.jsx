@@ -23,7 +23,7 @@ export default function AppHeader() {
   return (
     <header className="sticky top-0 z-50 px-6 py-6 bg-[#E8E3D9]">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <a href="#home" className="font-['DM_Serif_Display'] text-2xl flex items-center gap-3" aria-label="Anay Milpestcon home">
+        <a href="#home" className="font-['DM_Serif_Display'] lg:text-2xl text-sm flex items-center gap-3" aria-label="Anay Milpestcon home">
           <img src={logo} alt="" className="size-10" />
           <div>Anay Milpestcon <span className="text-[#8d6b38]">Pest Control</span></div>
         </a>
@@ -76,7 +76,7 @@ export default function AppHeader() {
             </a>
           ))}
 
-          <a href="tel:+639000000000" onClick={close} className="font-bold text-[#8d6b38]">
+          <a href="tel:+639000000000" onClick={close} className="font-bold text-[#8d6b38] text-2xl mt-10">
             CALL NOW
           </a>
         </nav>
